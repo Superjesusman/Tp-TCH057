@@ -49,12 +49,13 @@
         android:layout_width="0dp"
         android:layout_height="70dp"
         android:background="@color/white"
+        app:itemBackground="?selectableItemBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav_menu"
-        app:itemBackground="?selectableItemBackground"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:menu="@menu/bottom_nav_menu" />
 
     <androidx.gridlayout.widget.GridLayout
         android:id="@+id/gridLayout2"

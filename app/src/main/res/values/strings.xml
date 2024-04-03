@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">TP</string>
+    <string name="annuler">Annuler</string>
+    <string name="soumettre">Soumettre</string>
+    <string name="configuration">Configuration</string>
+    <string name="longueur_du_code">Longueur du code</string>
+    <string name="nombre">Nombre</string>
+    <string name="nombre_de_tentatives">Nombre de tentatives</string>
 </resources>
