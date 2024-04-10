@@ -1,26 +1,21 @@
 package com.gctcymd.mastermind.activites;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.GridLayout;
 import android.widget.GridView;
 import android.widget.LinearLayout;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.gctcymd.mastermind.R;
 import com.gctcymd.mastermind.modele.Code;
 import com.gctcymd.mastermind.modele.Feedback;
 import com.gctcymd.mastermind.modele.Mastermind;
-import com.gctcymd.mastermind.modele.Stats;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class JeuActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, View.OnClickListener{
@@ -61,27 +56,7 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
         nCouleurs = intent.getIntExtra("NOMBRE_COULEURS", 8);
         nTentatives = intent.getIntExtra("NOMBRES_TENTATIVES", 10);
 
-        //draft vague
-
-        //Construction de la grille
-        GridLayout grille = findViewById(R.id.gridLayout);
-        grille.setColumnCount(longCode + 2);
-        grille.setRowCount(nTentatives);
-        //grille.addView(composant);
-
-        //construction des choix de couleurs
-        LinearLayout layoutCouleurs = findViewById(R.id.layoutChoixCouleurs);
-        Drawable drawable = getResources().getDrawable(R.drawable.bouton_oval);
-        //for ... nCouleur
-        //new button
-        Button newButton = new Button(this);
-        newButton.setBackground(drawable);
-        newButton.getBackground().setTint(0xffff0000);
-        ViewGroup.LayoutParams params;
-        params = newButton.getLayoutParams();
-        params.width = 100;
-        params.height = 100;
-        ((ViewGroup.MarginLayoutParams)params).setMargins(10,5,10,5);
+        //presenter
 
         startGame();
     }

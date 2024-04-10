@@ -27,18 +27,18 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        //if not connected and item.getItemId() != R.id.home, pop up to connect!
         switch (item.getItemId()) {
             case R.id.home:
-                startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                overridePendingTransition(0,0);
                 return true;
             case R.id.game:
                 startActivity(new Intent(getApplicationContext(),JeuActivity.class));
-                overridePendingTransition(0,0);
                 return true;
             case R.id.history:
+                //startActivity(new Intent(getApplicationContext(),HistoryActivity.class));
                 return true;
             case R.id.settings:
+                startActivity(new Intent(getApplicationContext(),ConfigurationActivity.class));
                 return true;
         }
         return false;

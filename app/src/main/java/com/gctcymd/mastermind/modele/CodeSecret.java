@@ -10,12 +10,10 @@ public class CodeSecret extends Code{
         this.nCouleurs = nCouleurs;
     }
 
-    @Override
     public int getId() {
         return id;
     }
 
-    @Override
     public int getnCouleurs() {
         return nCouleurs;
     }

@@ -69,6 +69,7 @@ public class ConfigurationActivity extends AppCompatActivity implements BottomNa
                 startActivity(new Intent(getApplicationContext(),JeuActivity.class));
                 return true;
             case R.id.history:
+                //startActivity(new Intent(getApplicationContext(),HistoryActivity.class));
                 return true;
             case R.id.settings:
                 return true;
