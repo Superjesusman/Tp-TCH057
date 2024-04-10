@@ -11,14 +11,16 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
 import com.gctcymd.mastermind.R;
 import com.gctcymd.mastermind.modele.Code;
 import com.gctcymd.mastermind.modele.Feedback;
 import com.gctcymd.mastermind.modele.Mastermind;
+import com.gctcymd.mastermind.presentateur.CancelGameDialogFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class JeuActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, View.OnClickListener{
+public class JeuActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, View.OnClickListener, CancelGameDialogFragment.DialogListener{
     private BottomNavigationView bottomNavigationView;
     private Button btnAbandon, btnNouvellePartie, btnValiderJeu;
 
@@ -66,20 +68,16 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.home:
-                //pop up
-                //clear game
                 startActivity(new Intent(getApplicationContext(),MainActivity.class));
                 return true;
             case R.id.game:
                 return true;
             case R.id.history:
-                //pop up
-                //clear game
                 //startActivity(new Intent(getApplicationContext(),HistoryActivity.class));
                 return true;
             case R.id.settings:
-                //pop up
-                //clear game
+                DialogFragment newFragment = new CancelGameDialogFragment();
+                newFragment.show(getSupportFragmentManager(), "game");
                 startActivity(new Intent(getApplicationContext(),ConfigurationActivity.class));
                 return true;
         }
@@ -89,12 +87,13 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
     @Override
     public void onClick(View v) {
         if(v == btnAbandon){
-            //pop up
+            DialogFragment newFragment = new CancelGameDialogFragment();
+            newFragment.show(getSupportFragmentManager(), "game");
             //clear game
             startActivity(new Intent(getApplicationContext(),MainActivity.class));
         } else if (v == btnNouvellePartie){
-            //pop up
             //clear game and new game
+            startGame();
         } else if (v == btnValiderJeu){
             //game
             //get le guess
@@ -102,13 +101,31 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
 
             //
             Code tentative = new Code(couleursDuJoueur);
-            Feedback nouveauFeedback = partieMastermind.nouvelleTentative(tentative);
+            partieMastermind.nouvelleTentative(tentative);
+            partieMastermind.getLastFeedback();
+            partieMastermind.getLastTentative();
 
             //afficher le feedback
         }
     }
 
+    public void showAbandonDialog(){
+        DialogFragment newFragment = new CancelGameDialogFragment();
+        newFragment.show(getSupportFragmentManager(), "game");
+    }
+
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialog) {
+        scrapGame();//scrap game
+        startGame();
+    }
+
     private void startGame(){
-        partieMastermind = new Mastermind();
+        //getCodeSecret avec dao
+        //partieMastermind = new Mastermind(codeSecret);
+    }
+
+    private void scrapGame(){
+
     }
 }
