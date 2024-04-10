@@ -13,6 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "TP"
+rootProject.name = "Mastermind"
 include(":app")
  

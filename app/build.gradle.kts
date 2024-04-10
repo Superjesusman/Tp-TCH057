@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.tp"
+    namespace = "com.gctcymd.mastermind"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.tp"
+        applicationId = "com.gctcymd.mastermind"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

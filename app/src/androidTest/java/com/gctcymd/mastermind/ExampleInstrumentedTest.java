@@ -1,4 +1,4 @@
-package com.example.tp;
+package com.gctcymd.mastermind;
 
 import android.content.Context;
 

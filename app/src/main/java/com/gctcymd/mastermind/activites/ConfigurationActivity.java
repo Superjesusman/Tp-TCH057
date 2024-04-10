@@ -1,4 +1,4 @@
-package com.example.tp;
+package com.gctcymd.mastermind.activites;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -13,10 +13,10 @@ import android.widget.Spinner;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.gctcymd.mastermind.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
 
-public class ConfigurationActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, View.OnClickListener, NavigationBarView.OnItemSelectedListener, AdapterView.OnItemSelectedListener {
+public class ConfigurationActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, View.OnClickListener, AdapterView.OnItemSelectedListener {
     private BottomNavigationView bottomNavigationView;
     private Spinner spinLongCode, spinNCouleurs, spinNTentatives;
 
@@ -64,11 +64,9 @@ public class ConfigurationActivity extends AppCompatActivity implements BottomNa
         switch (item.getItemId()) {
             case R.id.home:
                 startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                overridePendingTransition(0,0);
                 return true;
             case R.id.game:
                 startActivity(new Intent(getApplicationContext(),JeuActivity.class));
-                overridePendingTransition(0,0);
                 return true;
             case R.id.history:
                 return true;
