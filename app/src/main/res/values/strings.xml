@@ -1,12 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Mastermind</string>
-    <string name="annuler" translatable="true">Annuler</string>
-    <string name="soumettre" translatable="true">Soumettre</string>
-    <string name="configuration" translatable="true">Configuration</string>
-    <string name="longueur_du_code" translatable="true">Longueur du code</string>
-    <string name="nombre" translatable="true">Nombre</string>
-    <string name="nombre_de_tentatives" translatable="true">Nombre de tentatives</string>
+    <string name="app_name">TP</string>
+    <string name="annuler">Annuler</string>
+    <string name="soumettre">Soumettre</string>
+    <string name="configuration">Configuration</string>
+    <string name="longueur_du_code">Longueur du code</string>
+    <string name="nombre">Nombre</string>
+    <string name="nombre_de_tentatives">Nombre de tentatives</string>
     <string name="nombre_de_couleurs" translatable="true">Nombre de couleurs</string>
     <string name="nombre_maximum_de_tentatives" translatable="true">Nombre maximum de tentatives</string>
     <string name="abandon">abandon</string>
@@ -17,4 +16,14 @@
     <string name="history">History</string>
     <string name="settings">Settings</string>
     <string name="renitialiser">Réénitialiser</string>
+    <string name="connexion">Connexion</string>
+    <string name="historique">Historique</string>
+    <string name="jeu">Jeu</string>
+    <string name="mastermind">Mastermind</string>
+    <string name="exemple_email_com">exemple@email.com</string>
+    <string name="bienvenue">Bienvenue!</string>
+    <string name="tu_veux_t_amuser">Tu veux t\'amuser?</string>
+    <string name="veuillez_rentrer">Veuillez rentrer</string>
+    <string name="votre_courriel">votre courriel</string>
+    <string name="obligatoire">*Obligatoire</string>
 </resources>
