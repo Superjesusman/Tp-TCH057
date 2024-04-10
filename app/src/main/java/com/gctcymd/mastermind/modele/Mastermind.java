@@ -1,25 +1,50 @@
 package com.gctcymd.mastermind.modele;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
+import java.util.ArrayList;
 
 public class Mastermind {
     private CodeSecret codeSecret;
 
-    private HashMap<Code, Feedback> listeTentatives;
+    private ArrayList<Code> listeTentatives;
+    private ArrayList<Feedback> listeFeedbacks;
 
     private int nTentatives;
 
-    public Mastermind() {
-        codeSecret = null; //api to fetch
-        listeTentatives = new HashMap<Code, Feedback>();
+    private boolean victoire;
+
+    public Mastermind(CodeSecret codeSecret) {
+        this.codeSecret = codeSecret; //api to fetch
+        listeTentatives = new ArrayList<Code>();
+        listeFeedbacks = new ArrayList<Feedback>();
         nTentatives = 0;
+        victoire = false;
     }
 
-    public Feedback nouvelleTentative(Code tentative){
+    public boolean nouvelleTentative(Code tentative){
         Feedback nouveauFeedback = new Feedback(codeSecret, tentative);
-        listeTentatives.put(tentative, nouveauFeedback);
+        boolean addedCode = listeTentatives.add(tentative);
+        boolean addedFeedback = listeFeedbacks.add(nouveauFeedback);
         nTentatives++;
-        return nouveauFeedback;
+
+        if (codeSontEquivalents(nouveauFeedback.getIndicateurExact(), nouveauFeedback.getIndicateurApproximatif(), codeSecret)){
+            victoire = true;
+        }
+        return addedCode && addedFeedback;
+    }
+
+    public Code getLastTentative(){
+        return listeTentatives.get(nTentatives);
+    }
+
+    public Feedback getLastFeedback(){
+        return listeFeedbacks.get(nTentatives);
+    }
+
+    public boolean isVictoire() {
+        return victoire;
+    }
+
+    private boolean codeSontEquivalents(int indicExact, int indicApprox, Code c){
+        return indicApprox==0 && indicExact==c.getLongueurCode();
     }
 }

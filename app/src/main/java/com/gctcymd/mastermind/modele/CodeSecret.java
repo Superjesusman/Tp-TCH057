@@ -9,12 +9,11 @@ public class CodeSecret extends Code{
         this.id = id;
         this.nCouleurs = nCouleurs;
     }
-
     public int getId() {
         return id;
     }
 
-    public int getnCouleurs() {
+    public int getNCouleurs() {
         return nCouleurs;
     }
 }
