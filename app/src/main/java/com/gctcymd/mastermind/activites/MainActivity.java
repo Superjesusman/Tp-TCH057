@@ -23,23 +23,28 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private boolean isConnected = false;
     private TextView welcomeMessage, emailMessage, warningMessage;
     private EditText email;
-    private Button connect;
+    private Button connect, config, history, game;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //Construction du menu navigation
-//        bottomNavigationView = findViewById(R.id.bottomNavigationView);
-//        bottomNavigationView.setOnNavigationItemSelectedListener(this);
-//        bottomNavigationView.setSelectedItemId(R.id.settings);
+       /* bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
+        bottomNavigationView.setSelectedItemId(R.id.settings);*/
 
         welcomeMessage = findViewById(R.id.textViewWelcomeMessage);
         emailMessage = findViewById(R.id.textViewEmail);
         warningMessage = findViewById(R.id.textViewWarning);
         email = findViewById(R.id.editTextEmailAddress);
         connect = findViewById(R.id.buttonConnect);
+        config = findViewById(R.id.buttonConfig);
+        history = findViewById(R.id.buttonHistory);
+        game = findViewById(R.id.buttonGame);
 
         connect.setOnClickListener(this);
+        config.setOnClickListener(this);
+        history.setOnClickListener(this);
+        game.setOnClickListener(this);
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -64,30 +69,41 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     @Override
     public void onClick(View v) {
-        currentEmail = email.getText().toString();
-        if(currentEmail.matches("")&& !isConnected){
-            Toast.makeText(getApplicationContext(), "Veuillez entrer votre email!",
-                    Toast.LENGTH_SHORT).show();
-            return;
+        if (v == connect) {
+            currentEmail = email.getText().toString();
+            if (currentEmail.matches("") && !isConnected) {
+                Toast.makeText(getApplicationContext(), "Veuillez entrer votre email!",
+                        Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (isConnected) {
+                welcomeMessage.setText("Veuillez rentrer");
+                emailMessage.setText("votre courriel");
+                warningMessage.setVisibility(View.VISIBLE);
+                email.setVisibility(View.VISIBLE);
+                connect.setText("Connexion");
+                connect.setBackgroundColor(Color.GREEN);
+                isConnected = false;
+                currentEmail = "";
+                return;
+            }
+            welcomeMessage.setText("Vous êtes connecté en tant que:");
+            emailMessage.setText(currentEmail);
+            warningMessage.setVisibility(View.INVISIBLE);
+            email.setVisibility(View.INVISIBLE);
+            email.getText().clear();
+            connect.setText("Déconnexion");
+            connect.setBackgroundColor(Color.RED);
+            isConnected = true;
         }
-        if(isConnected){
-            welcomeMessage.setText("Veuillez rentrer");
-            emailMessage.setText("votre courriel");
-            warningMessage.setVisibility(View.VISIBLE);
-            email.setVisibility(View.VISIBLE);
-            connect.setText("Connexion");
-            connect.setBackgroundColor(Color.GREEN);
-            isConnected = false;
-            currentEmail = "";
-            return;
+        if(v==config){
+            startActivity(new Intent(getApplicationContext(),ConfigurationActivity.class));
         }
-        welcomeMessage.setText("Vous êtes connecté en tant que:");
-        emailMessage.setText(currentEmail);
-        warningMessage.setVisibility(View.INVISIBLE);
-        email.setVisibility(View.INVISIBLE);
-        email.getText().clear();
-        connect.setText("Déconnexion");
-        connect.setBackgroundColor(Color.RED);
-        isConnected = true;
+        if(v==history){
+            //startActivity(new Intent(getApplicationContext(),HistoryActivity.class));
+        }
+        if(v==game){
+            startActivity(new Intent(getApplicationContext(),JeuActivity.class));
+        }
     }
 }
