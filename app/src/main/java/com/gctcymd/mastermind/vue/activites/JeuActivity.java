@@ -1,4 +1,4 @@
-package com.gctcymd.mastermind.activites;
+package com.gctcymd.mastermind.vue.activites;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -15,9 +15,8 @@ import androidx.fragment.app.DialogFragment;
 
 import com.gctcymd.mastermind.R;
 import com.gctcymd.mastermind.modele.Code;
-import com.gctcymd.mastermind.modele.Feedback;
 import com.gctcymd.mastermind.modele.Mastermind;
-import com.gctcymd.mastermind.presentateur.CancelGameDialogFragment;
+import com.gctcymd.mastermind.vue.fragment.CancelGameDialogFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class JeuActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, View.OnClickListener, CancelGameDialogFragment.DialogListener{
@@ -78,7 +77,7 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
             case R.id.settings:
                 DialogFragment newFragment = new CancelGameDialogFragment();
                 newFragment.show(getSupportFragmentManager(), "game");
-                startActivity(new Intent(getApplicationContext(),ConfigurationActivity.class));
+                //then startActivity(new Intent(getApplicationContext(),ConfigurationActivity.class));
                 return true;
         }
         return false;
@@ -89,11 +88,10 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
         if(v == btnAbandon){
             DialogFragment newFragment = new CancelGameDialogFragment();
             newFragment.show(getSupportFragmentManager(), "game");
-            //clear game
-            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            //then startActivity(new Intent(getApplicationContext(),MainActivity.class));
         } else if (v == btnNouvellePartie){
-            //clear game and new game
-            startGame();
+            DialogFragment newFragment = new CancelGameDialogFragment();
+            newFragment.show(getSupportFragmentManager(), "game");
         } else if (v == btnValiderJeu){
             //game
             //get le guess

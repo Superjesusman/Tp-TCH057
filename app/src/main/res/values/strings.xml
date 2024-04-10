@@ -26,4 +26,5 @@
     <string name="veuillez_rentrer">Veuillez entrer</string>
     <string name="votre_courriel">votre courriel</string>
     <string name="obligatoire">*Obligatoire</string>
+    <string name="consulter_les_parties_ant_rieures">Consulter les parties antérieures:</string>
 </resources>

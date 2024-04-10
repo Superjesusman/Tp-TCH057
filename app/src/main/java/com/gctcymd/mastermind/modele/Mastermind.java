@@ -14,8 +14,8 @@ public class Mastermind {
 
     public Mastermind(CodeSecret codeSecret) {
         this.codeSecret = codeSecret; //api to fetch
-        listeTentatives = new ArrayList<Code>();
-        listeFeedbacks = new ArrayList<Feedback>();
+        listeTentatives = new ArrayList<>();
+        listeFeedbacks = new ArrayList<>();
         nTentatives = 0;
         victoire = false;
     }

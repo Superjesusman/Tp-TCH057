@@ -1,5 +1,7 @@
 package com.gctcymd.mastermind.modele;
 
+import java.util.Objects;
+
 public class Feedback {
     private int indicateurExact;
     private int indicateurApproximatif;
@@ -15,7 +17,7 @@ public class Feedback {
         indicateurApproximatif = 0;
         for(int i = 0; i < code1.length; i++){
             for (int j = 0; j < code2.length; j++){
-                if (code1[i] == code2[j]){
+                if (Objects.equals(code1[i], code2[j])){
                     if(i == j) indicateurExact++;
                     else indicateurApproximatif++;
                 }

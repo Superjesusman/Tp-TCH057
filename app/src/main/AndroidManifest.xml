@@ -14,7 +14,7 @@
         tools:targetApi="31">
 
         <activity
-            android:name="com.gctcymd.mastermind.activites.MainActivity"
+            android:name="com.gctcymd.mastermind.vue.activites.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,11 +24,11 @@
         </activity>
 
         <activity
-            android:name="com.gctcymd.mastermind.activites.ConfigurationActivity"
+            android:name="com.gctcymd.mastermind.vue.activites.ConfigurationActivity"
             android:exported="false" />
 
         <activity
-            android:name="com.gctcymd.mastermind.activites.JeuActivity"
+            android:name="com.gctcymd.mastermind.vue.activites.JeuActivity"
             android:exported="false" />
     </application>
 

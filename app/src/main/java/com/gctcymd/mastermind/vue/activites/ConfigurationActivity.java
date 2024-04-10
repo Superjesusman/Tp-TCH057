@@ -1,4 +1,4 @@
-package com.gctcymd.mastermind.activites;
+package com.gctcymd.mastermind.vue.activites;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
