@@ -1,9 +1,21 @@
 <resources>
-    <string name="app_name">TP</string>
-    <string name="annuler">Annuler</string>
-    <string name="soumettre">Soumettre</string>
-    <string name="configuration">Configuration</string>
-    <string name="longueur_du_code">Longueur du code</string>
-    <string name="nombre">Nombre</string>
-    <string name="nombre_de_tentatives">Nombre de tentatives</string>
+    <string name="app_name">Tp-Tch057</string>
+    <string name="annuler" translatable="true">Annuler</string>
+    <string name="soumettre" translatable="true">Soumettre</string>
+    <string name="configuration" translatable="true">Configuration</string>
+    <string name="longueur_du_code" translatable="true">Longueur du code</string>
+    <string name="nombre" translatable="true">Nombre</string>
+    <string name="nombre_de_tentatives" translatable="true">Nombre de tentatives</string>
+    <string name="nombre_de_couleurs" translatable="true">Nombre de couleurs</string>
+    <string name="nombre_maximum_de_tentatives" translatable="true">Nombre maximum de tentatives</string>
+    <string name="abandon">abandon</string>
+    <string name="valider">Valider</string>
+    <string name="nouvelle_partie">nouvelle partie</string>
+    <string name="home">Home</string>
+    <string name="game">Game</string>
+    <string name="history">History</string>
+    <string name="settings">Settings</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="renitialiser">Réénitialiser</string>
 </resources>

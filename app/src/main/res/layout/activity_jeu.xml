@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E4E4E4"
-    tools:context=".JeuActivity">
+    tools:context=".JeuActivity"
+    tools:ignore="VisualLintBounds">
 
     <Button
         android:id="@+id/button"
@@ -13,8 +14,10 @@
         android:layout_height="48dp"
         android:layout_marginStart="48dp"
         android:layout_marginTop="16dp"
-        android:background="#FF3030"
-        android:text="abandon"
+        android:backgroundTint="#E14242"
+        android:text="@string/abandon"
+        android:textColor="#000000"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/gridLayout2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,9 +28,10 @@
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="48dp"
-        android:background="#8394FF"
-        android:text="nouvelle partie"
-        android:textSize="12sp"
+        android:backgroundTint="#7680D2"
+        android:text="@string/nouvelle_partie"
+        android:textColor="#000000"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/gridLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -37,25 +41,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:background="#73FF78"
-        android:text="Valider"
+        android:backgroundTint="#B8E142"
+        android:text="@string/valider"
         android:textColor="#000000"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="0dp"
-        android:layout_height="70dp"
-        android:background="@color/white"
-        app:itemBackground="?selectableItemBackground"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        app:menu="@menu/bottom_nav_menu" />
 
     <androidx.gridlayout.widget.GridLayout
         android:id="@+id/gridLayout2"
@@ -73,7 +65,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_column="0"
-            app:layout_row="0" />
+            app:layout_row="0"
+            tools:ignore="UselessLeaf" />
     </androidx.gridlayout.widget.GridLayout>
 
     <LinearLayout
@@ -87,6 +80,19 @@
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gridLayout2"></LinearLayout>
+        app:layout_constraintTop_toBottomOf="@+id/gridLayout2" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:background="@color/white"
+        app:itemBackground="?selectableItemBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:menu="@menu/bottom_nav_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
