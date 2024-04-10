@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center_horizontal"
-    tools:context=".MainActivity">
+    tools:context=".activites.MainActivity">
 
     <LinearLayout
         android:layout_width="413dp"
@@ -91,7 +91,7 @@
                 android:layout_width="218dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:backgroundTint="@android:color/holo_green_dark"
+                android:backgroundTint="@android:color/holo_green_light"
                 android:text="@string/connexion"
                 android:textColor="#000000"
                 app:cornerRadius="40dp" />
