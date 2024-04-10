@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="center_horizontal"
     android:layout_marginTop="1dp"
+    android:background="#FFFFFF"
     tools:context=".activites.MainActivity">
 
     <LinearLayout
@@ -185,6 +186,7 @@
         android:id="@+id/linearLayout4"
         android:layout_width="413dp"
         android:layout_height="67dp"
+        android:background="#FFFFFF"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -194,6 +196,7 @@
             android:id="@+id/bottomNavigationView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#FFFFFF"
             app:itemBackground="?selectableItemBackground"
             app:menu="@menu/bottom_nav_menu" />
     </LinearLayout>

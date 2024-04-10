@@ -47,9 +47,9 @@ public class ConfigurationActivity extends AppCompatActivity implements BottomNa
         spinNTentatives = findViewById(R.id.spinnerNTentatives);
 
         //Attacher les valeurs associes aux spinners
-        afficherSpinner(valLongCode, spinLongCode);
-        afficherSpinner(valNCouleurs, spinNCouleurs);
-        afficherSpinner(valNTentatives, spinNTentatives);
+        afficherSpinner(valLongCode, spinLongCode, 2); //4 par default
+        afficherSpinner(valNCouleurs, spinNCouleurs, 6); //8 par default
+        afficherSpinner(valNTentatives, spinNTentatives, 2); //10 par default
 
         //Construction des boutons et des listeners
         btnReinitialiser = findViewById(R.id.btnReinitialiserConfig);
@@ -77,10 +77,11 @@ public class ConfigurationActivity extends AppCompatActivity implements BottomNa
         return false;
     }
 
-    private void afficherSpinner(Integer[] intArray, Spinner spinner){
+    private void afficherSpinner(Integer[] intArray, Spinner spinner, int defaultPosition){
         ArrayAdapter<Integer> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, intArray);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
+        spinner.setSelection(defaultPosition);
     }
 
     @Override
@@ -90,10 +91,11 @@ public class ConfigurationActivity extends AppCompatActivity implements BottomNa
             changementDeConfigIntent.putExtra("LONGUEUR_CODE", longCode);
             changementDeConfigIntent.putExtra("NOMBRE_COULEURS", nCouleurs);
             changementDeConfigIntent.putExtra("NOMBRES_TENTATIVES", nTentatives);
+            startActivity(changementDeConfigIntent);
         } else if (v == btnReinitialiser){
-            longCode = 4;
-            nCouleurs = 8;
-            nTentatives = 10;
+            spinLongCode.setSelection(2);
+            spinNCouleurs.setSelection(6);
+            spinNTentatives.setSelection(2);
         }
     }
 
