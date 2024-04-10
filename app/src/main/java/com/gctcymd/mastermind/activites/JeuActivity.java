@@ -39,7 +39,7 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
         //Construction du menu navigation
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
-        bottomNavigationView.setSelectedItemId(R.id.settings);
+        bottomNavigationView.setSelectedItemId(R.id.game);
 
         //Construction des boutons
         btnAbandon = findViewById(R.id.btnAbandon);

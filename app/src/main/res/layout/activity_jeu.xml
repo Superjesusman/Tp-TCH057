@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E4E4E4"
-    tools:context=".JeuActivity"
+    tools:context=".activites.JeuActivity"
     tools:ignore="VisualLintBounds">
 
     <Button
@@ -24,14 +24,14 @@
 
     <Button
         android:id="@+id/btnNouvellePartie"
-        android:layout_width="139dp"
+        android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="48dp"
         android:backgroundTint="#7680D2"
         android:text="@string/nouvelle_partie"
         android:textColor="#000000"
-        android:textSize="20sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/gridLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

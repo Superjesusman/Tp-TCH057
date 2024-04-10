@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center_horizontal"
+    android:layout_marginTop="1dp"
     tools:context=".activites.MainActivity">
 
     <LinearLayout
@@ -30,23 +31,25 @@
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
-                android:layout_height="23dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
                 android:foregroundGravity="center"
                 android:gravity="center"
                 android:text="@string/bienvenue"
                 android:textColor="#000000"
-                android:textSize="28sp" />
+                android:textSize="30sp" />
 
             <TextView
                 android:id="@+id/textViewWelcomeMessage"
                 android:layout_width="wrap_content"
-                android:layout_height="1dp"
-                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginTop="23dp"
                 android:layout_weight="1"
+                android:foregroundGravity="bottom"
                 android:text="@string/veuillez_rentrer"
-                android:textSize="16sp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/textViewEmail"
@@ -55,7 +58,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
                 android:text="@string/votre_courriel"
-                android:textSize="16sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -70,13 +73,14 @@
                 android:layout_width="215dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:autofillHints=""
                 android:ems="10"
                 android:foregroundGravity="center_horizontal"
                 android:gravity="center_horizontal"
                 android:hint="@string/exemple_email_com"
                 android:inputType="textEmailAddress"
                 android:minHeight="48dp"
-                android:autofillHints="" />
+                android:textColorHint="#616161" />
 
             <TextView
                 android:id="@+id/textViewWarning"
@@ -94,6 +98,7 @@
                 android:backgroundTint="@android:color/holo_green_light"
                 android:text="@string/connexion"
                 android:textColor="#000000"
+                android:textSize="20sp"
                 app:cornerRadius="40dp" />
 
         </LinearLayout>
@@ -129,9 +134,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="15dp"
-                android:backgroundTint="#0073FF"
-                android:text="Configuration"
+                android:backgroundTint="#7680D2"
+                android:text="@string/configuration"
                 android:textColor="#000000"
+                android:textSize="20sp"
                 app:cornerRadius="40dp" />
 
             <Button
@@ -140,9 +146,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="15dp"
-                android:backgroundTint="#0073FF"
+                android:backgroundTint="#7680D2"
                 android:text="@string/historique"
                 android:textColor="#000000"
+                android:textSize="20sp"
                 app:cornerRadius="40dp" />
 
             <Button
@@ -151,22 +158,23 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="15dp"
-                android:backgroundTint="#0073FF"
+                android:backgroundTint="#9976D2"
                 android:text="@string/jeu"
                 android:textColor="#000000"
+                android:textSize="20sp"
                 app:cornerRadius="40dp" />
         </LinearLayout>
     </LinearLayout>
 
     <TextView
         android:id="@+id/configurationTxtView"
-        android:layout_width="272dp"
+        android:layout_width="fill_parent"
         android:layout_height="73dp"
-        android:layout_marginEnd="32dp"
         android:layout_weight="0"
-        android:foregroundGravity="center"
-        android:gravity="center_vertical"
+        android:foregroundGravity="center_vertical|center"
+        android:gravity="center|center_vertical"
         android:text="@string/mastermind"
+        android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -183,6 +191,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigationView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:itemBackground="?selectableItemBackground"
