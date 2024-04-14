@@ -57,7 +57,15 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
         nCouleurs = intent.getIntExtra("NOMBRE_COULEURS", 8);
         nTentatives = intent.getIntExtra("NOMBRES_TENTATIVES", 10);
 
-        //presenter
+        //generate grid
+        gridJeu = findViewById(R.id.gridJeu);
+        for(int i = 0; i <  nTentatives; i++){
+
+        }
+//        CustomListAdapter adapter=new CustomListAdapter(HomePage.this,allElementDetails);
+//        gridview.setAdapter(adapter);
+
+        //
 
         startGame();
     }
@@ -100,7 +108,6 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
             //
             Code tentative = new Code(couleursDuJoueur);
             partieMastermind.nouvelleTentative(tentative);
-            partieMastermind.getLastFeedback();
             partieMastermind.getLastTentative();
 
             //afficher le feedback
@@ -121,6 +128,10 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
     private void startGame(){
         //getCodeSecret avec dao
         //partieMastermind = new Mastermind(codeSecret);
+    }
+
+    private void showGame(){
+
     }
 
     private void scrapGame(){

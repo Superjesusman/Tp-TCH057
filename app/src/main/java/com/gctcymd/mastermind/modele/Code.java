@@ -10,7 +10,7 @@ public class Code {
         this.code = code;
     }
 
-    public int getLongueurCode() {
+    public int getLongueur() {
         return longueurCode;
     }
 

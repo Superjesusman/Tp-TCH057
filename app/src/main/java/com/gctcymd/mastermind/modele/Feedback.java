@@ -6,6 +6,8 @@ public class Feedback {
     private int indicateurExact;
     private int indicateurApproximatif;
 
+    private boolean isEquivalent;
+
     public Feedback(Code c1, Code c2) {
         String[] code1 = c1.getCode();
         String[] code2 = c2.getCode();
@@ -23,6 +25,7 @@ public class Feedback {
                 }
             }
         }
+        if (indicateurApproximatif == 0 && indicateurExact == c1.getLongueur()) isEquivalent = true;
     }
 
     public int getIndicateurExact() {
@@ -31,5 +34,9 @@ public class Feedback {
 
     public int getIndicateurApproximatif() {
         return indicateurApproximatif;
+    }
+
+    public boolean isEquivalent() {
+        return isEquivalent;
     }
 }

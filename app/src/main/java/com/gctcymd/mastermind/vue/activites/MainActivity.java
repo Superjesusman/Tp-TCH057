@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 return;
             }
             if (isConnected) {
-                welcomeMessage.setText("Veuillez rentrer");
+                welcomeMessage.setText("Veuillez entrer");
                 emailMessage.setText("votre courriel");
                 warningMessage.setVisibility(View.VISIBLE);
                 email.setVisibility(View.VISIBLE);

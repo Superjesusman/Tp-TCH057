@@ -3,48 +3,85 @@ package com.gctcymd.mastermind.modele;
 import java.util.ArrayList;
 
 public class Mastermind {
-    private CodeSecret codeSecret;
 
-    private ArrayList<Code> listeTentatives;
-    private ArrayList<Feedback> listeFeedbacks;
+    //Les tentaives du joueur
+    private ArrayList<Tentative> lesTentatives;
 
-    private int nTentatives;
+    //Les statistiques du jeu
+    private final int maxTentatives;
+    private final int longueurCode;
+    private final int nbreCouleurs;
+    private final CodeSecret codeSecret;
+    private int nbreTentatives; //Le nieme tentative dans la partie courante
 
-    private boolean victoire;
+    //Le statut de la partie
+    private EtatDuJeu etatDuJeu;
+    public enum EtatDuJeu {
+        EN_COURS,
+        VICTOIRE,
+        DEFAITE
+    }
 
-    public Mastermind(CodeSecret codeSecret) {
-        this.codeSecret = codeSecret; //api to fetch
-        listeTentatives = new ArrayList<>();
-        listeFeedbacks = new ArrayList<>();
-        nTentatives = 0;
+
+    public Mastermind(int maxTentative, int longCode, int nCouleurs) {
+        //this.codeSecret = codeSecret; //api to fetch a code with long code et nCourleurs to do
+        this.maxTentatives = maxTentative;
+        this.longueurCode = longCode;
+        this.nbreCouleurs = nCouleurs;
+
+        lesTentatives = new ArrayList<>();
+        nbreTentatives = 0;
+
         victoire = false;
+        defaite = false;
     }
 
-    public boolean nouvelleTentative(Code tentative){
-        Feedback nouveauFeedback = new Feedback(codeSecret, tentative);
-        boolean addedCode = listeTentatives.add(tentative);
-        boolean addedFeedback = listeFeedbacks.add(nouveauFeedback);
-        nTentatives++;
+    public int getNbreTentatives() {
+        return nbreTentatives;
+    }
 
-        if (codeSontEquivalents(nouveauFeedback.getIndicateurExact(), nouveauFeedback.getIndicateurApproximatif(), codeSecret)){
-            victoire = true;
+    public int getMaxTentatives() {
+        return maxTentatives;
+    }
+
+    public int getLongueurCode() {
+        return longueurCode;
+    }
+
+    public int getNbreCouleurs() {
+        return nbreCouleurs;
+    }
+
+    public CodeSecret getCodeSecret() {
+        return codeSecret;
+    }
+
+    //Nouvelle tentative de la part du joeur
+    public boolean nouvelleTentative(Code essaiDeCode){
+        Tentative tentative = new Tentative(nbreTentatives, essaiDeCode, codeSecret);
+        nbreTentatives++;
+        Feedback f = tentative.getFeedback();
+
+        //Si le joeur a trouvé le code,
+        if (f.isEquivalent()){
+            etatDuJeu = EtatDuJeu.VICTOIRE;
         }
-        return addedCode && addedFeedback;
+
+        if (nbreTentatives == maxTentatives){
+            etatDuJeu = EtatDuJeu.DEFAITE;
+        }
+        return lesTentatives.add(tentative);
     }
 
-    public Code getLastTentative(){
-        return listeTentatives.get(nTentatives);
+    public Tentative getLastTentative(){
+        return lesTentatives.get(nbreTentatives);
     }
 
-    public Feedback getLastFeedback(){
-        return listeFeedbacks.get(nTentatives);
+    public ArrayList<Tentative> getLesTentatives() {
+        return lesTentatives;
     }
 
-    public boolean isVictoire() {
-        return victoire;
-    }
-
-    private boolean codeSontEquivalents(int indicExact, int indicApprox, Code c){
-        return indicApprox==0 && indicExact==c.getLongueurCode();
+    public EtatDuJeu getEtatDuJeu(){
+        return etatDuJeu;
     }
 }
