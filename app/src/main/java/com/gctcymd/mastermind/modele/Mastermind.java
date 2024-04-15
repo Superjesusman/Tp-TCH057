@@ -1,60 +1,68 @@
 package com.gctcymd.mastermind.modele;
 
-import static com.gctcymd.mastermind.modele.Mastermind.EtatDuJeu.EN_COURS;
+import static com.gctcymd.mastermind.modele.entite.EtatDuJeu.*;
+
+import com.gctcymd.mastermind.modele.entite.Code;
+import com.gctcymd.mastermind.modele.entite.CodeSecret;
+import com.gctcymd.mastermind.modele.entite.Configuration;
+import com.gctcymd.mastermind.modele.entite.EtatDuJeu;
+import com.gctcymd.mastermind.modele.entite.Feedback;
+import com.gctcymd.mastermind.modele.entite.Tentative;
 
 import java.util.ArrayList;
 
 public class Mastermind {
+    private Configuration configuration;
+    private String user;
+    private CodeSecret codeSecret;
 
-    //Les tentaives du joueur
-    private ArrayList<Tentative> lesTentatives;
-
-    //Les statistiques du jeu
-    private final int maxTentatives;
-    private final int longueurCode;
-    private final int nbreCouleurs;
-    private final CodeSecret codeSecret;
+    private ArrayList<Tentative> listTentatives;     //Les tentaives du joueur
     private int nbreTentatives; //Le nieme tentative dans la partie courante
+    private EtatDuJeu etatDuJeu; //Le statut de la partie
 
-    //Le statut de la partie
-    private EtatDuJeu etatDuJeu;
-    public enum EtatDuJeu {
-        EN_COURS,
-        VICTOIRE,
-        DEFAITE
+    public Mastermind() {
+        configuration = new Configuration();
+        user = "";
+        codeSecret = new CodeSecret();
+
+        listTentatives = new ArrayList<>();
+        nbreTentatives = 0;
+        etatDuJeu = EN_COURS;
     }
 
+    public Configuration getConfiguration() {
+        return configuration;
+    }
 
-    public Mastermind(int maxTentative, int longCode, int nCouleurs) {
-        //this.codeSecret = codeSecret; //api to fetch a code with long code et nCourleurs to do
-        this.maxTentatives = maxTentative;
-        this.longueurCode = longCode;
-        this.nbreCouleurs = nCouleurs;
-
-        lesTentatives = new ArrayList<>();
-        nbreTentatives = 0;
-
-        etatDuJeu = EN_COURS;
+    public String getUser() {
+        return user;
     }
 
     public int getNbreTentatives() {
         return nbreTentatives;
     }
 
-    public int getMaxTentatives() {
-        return maxTentatives;
-    }
-
-    public int getLongueurCode() {
-        return longueurCode;
-    }
-
-    public int getNbreCouleurs() {
-        return nbreCouleurs;
-    }
-
     public CodeSecret getCodeSecret() {
         return codeSecret;
+    }
+
+    public ArrayList<Tentative> getListTentatives() {
+        return listTentatives;
+    }
+
+    public EtatDuJeu getEtatDuJeu(){
+        return etatDuJeu;
+    }
+    public void setConfiguration(Configuration configuration) {
+        this.configuration = configuration;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public void setCodeSecret(CodeSecret codeSecret) {
+        this.codeSecret = codeSecret;
     }
 
     //Nouvelle tentative de la part du joeur
@@ -68,21 +76,9 @@ public class Mastermind {
             etatDuJeu = EtatDuJeu.VICTOIRE;
         }
 
-        if (nbreTentatives == maxTentatives){
+        if (nbreTentatives == configuration.getMaxTentatives()){
             etatDuJeu = EtatDuJeu.DEFAITE;
         }
-        return lesTentatives.add(tentative);
-    }
-
-    public Tentative getLastTentative(){
-        return lesTentatives.get(nbreTentatives);
-    }
-
-    public ArrayList<Tentative> getLesTentatives() {
-        return lesTentatives;
-    }
-
-    public EtatDuJeu getEtatDuJeu(){
-        return etatDuJeu;
+        return listTentatives.add(tentative);
     }
 }

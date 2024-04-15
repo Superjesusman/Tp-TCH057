@@ -14,8 +14,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
 import com.gctcymd.mastermind.R;
-import com.gctcymd.mastermind.modele.Code;
-import com.gctcymd.mastermind.modele.Mastermind;
+import com.gctcymd.mastermind.modele.entite.Code;
+import com.gctcymd.mastermind.modele.entite.Configuration;
+import com.gctcymd.mastermind.modele.entite.Couleur;
+import com.gctcymd.mastermind.presentateur.PresentateurMastermind;
+import com.gctcymd.mastermind.vue.adaptateur.GameAdapter;
 import com.gctcymd.mastermind.vue.fragment.CancelGameDialogFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -26,11 +29,11 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
     private GridView gridJeu;
     private LinearLayout layoutCouleurs;
 
-    private int longCode = 4;
-    private int nCouleurs = 8;
-    private int nTentatives = 10;
+    private Configuration configuration;
+    String user;
+    private PresentateurMastermind presentateurMastermind;
+    private GameAdapter adaptateur;
 
-    private Mastermind partieMastermind;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,15 +54,17 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
         btnNouvellePartie.setOnClickListener(this);
         btnValiderJeu.setOnClickListener(this);
 
+        this.configuration = new Configuration();
+
         //if intent
         Intent intent = getIntent();
-        longCode = intent.getIntExtra("LONGUEUR_CODE", 4);
-        nCouleurs = intent.getIntExtra("NOMBRE_COULEURS", 8);
-        nTentatives = intent.getIntExtra("NOMBRES_TENTATIVES", 10);
+        configuration.setLongueurCode(intent.getIntExtra("LONGUEUR_CODE", 4));
+        configuration.setNbreCouleurs(intent.getIntExtra("NOMBRE_COULEURS", 8));
+        configuration.setMaxTentatives(intent.getIntExtra("NOMBRES_TENTATIVES", 10));
 
         //generate grid
         gridJeu = findViewById(R.id.gridJeu);
-        for(int i = 0; i <  nTentatives; i++){
+        for(int i = 0; i <  configuration.getMaxTentatives(); i++){
 
         }
 //        CustomListAdapter adapter=new CustomListAdapter(HomePage.this,allElementDetails);
@@ -103,13 +108,11 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
         } else if (v == btnValiderJeu){
             //game
             //get le guess
-            String[] couleursDuJoueur = {};
+            Couleur[] couleursDuJoueur = {};
 
             //
             Code tentative = new Code(couleursDuJoueur);
-            partieMastermind.nouvelleTentative(tentative);
-            partieMastermind.getLastTentative();
-
+            this.presentateurMastermind.afficheNouvelleTentative(tentative);
             //afficher le feedback
         }
     }
@@ -122,19 +125,27 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
     @Override
     public void onDialogPositiveClick(DialogFragment dialog) {
         scrapGame();//scrap game
-        startGame();
+        this.presentateurMastermind.lancerJeu(configuration, user);
     }
 
     private void startGame(){
-        //getCodeSecret avec dao
-        //partieMastermind = new Mastermind(codeSecret);
-    }
-
-    private void showGame(){
 
     }
 
     private void scrapGame(){
 
+    }
+
+    private void afficherChoixCouleurs() {
+    }
+    private void afficheGrilleDeJeu(){
+    }
+
+    public void afficheJeu() {
+        afficherChoixCouleurs();
+        afficheGrilleDeJeu();
+    }
+
+    public void afficherMessage(String s) {
     }
 }

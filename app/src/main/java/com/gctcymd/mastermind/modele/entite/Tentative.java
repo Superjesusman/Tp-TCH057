@@ -1,12 +1,12 @@
-package com.gctcymd.mastermind.modele;
+package com.gctcymd.mastermind.modele.entite;
 
 public class Tentative {
-    private final int nTentative;
+    private final int nbTentative;
     private final Code essaiDeCode;
     private final Feedback feedback;
 
     public Tentative(int nTentative, Code essaiDeCode, Code codeSecret) {
-        this.nTentative = nTentative;
+        this.nbTentative = nTentative;
         this.essaiDeCode = essaiDeCode;
         this.feedback = new Feedback(essaiDeCode, codeSecret);;
     }
@@ -15,8 +15,8 @@ public class Tentative {
         return feedback;
     }
 
-    public int getnTentative() {
-        return nTentative;
+    public int getNbTentative() {
+        return nbTentative;
     }
 
     public Code getEssaiDeCode() {

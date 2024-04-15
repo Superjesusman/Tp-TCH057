@@ -1,4 +1,7 @@
-package com.gctcymd.mastermind.modele;
+package com.gctcymd.mastermind.modele.entite;
+
+import com.gctcymd.mastermind.modele.entite.Code;
+import com.gctcymd.mastermind.modele.entite.Couleur;
 
 import java.util.Objects;
 
@@ -9,8 +12,8 @@ public class Feedback {
     private boolean isEquivalent;
 
     public Feedback(Code c1, Code c2) {
-        String[] code1 = c1.getCode();
-        String[] code2 = c2.getCode();
+        Couleur[] code1 = c1.getCode();
+        Couleur[] code2 = c2.getCode();
         if (code1.length != code2.length){
             //code pas de la meme longueur!!
             throw new IllegalArgumentException();

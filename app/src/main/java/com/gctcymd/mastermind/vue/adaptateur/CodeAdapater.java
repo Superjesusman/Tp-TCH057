@@ -10,21 +10,17 @@ import android.widget.ArrayAdapter;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.gctcymd.mastermind.modele.Code;
-import com.gctcymd.mastermind.modele.Mastermind;
-import com.gctcymd.mastermind.modele.Tentative;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.gctcymd.mastermind.modele.entite.Code;
+import com.gctcymd.mastermind.modele.entite.Couleur;
 
 public class CodeAdapater extends ArrayAdapter<String> {
     private Context context;
     private int viewResourceId;
     private Resources ressources;
-    private String[] lesCodeDeCouleurs;
+    private Couleur[] lesCodeDeCouleurs;
 
     public CodeAdapater(@NonNull Context context, int resource, @NonNull Code code) {
-        super(context, resource, code.getCode());
+        //super(context, resource, code.getCode());
         this.context = context;
         this.viewResourceId = resource;
         this.ressources = context.getResources();
@@ -44,9 +40,8 @@ public class CodeAdapater extends ArrayAdapter<String> {
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = layoutInflater.inflate(this.viewResourceId, parent, false);
         }
-        final String couleur = this.lesCodeDeCouleurs[position];
+        final Couleur couleur = this.lesCodeDeCouleurs[position];
         if (couleur != null){
-
         }
 
         return super.getView(position, convertView, parent);
