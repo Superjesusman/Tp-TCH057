@@ -1,5 +1,7 @@
 package com.gctcymd.mastermind.modele;
 
+import static com.gctcymd.mastermind.modele.Mastermind.EtatDuJeu.EN_COURS;
+
 import java.util.ArrayList;
 
 public class Mastermind {
@@ -32,8 +34,7 @@ public class Mastermind {
         lesTentatives = new ArrayList<>();
         nbreTentatives = 0;
 
-        victoire = false;
-        defaite = false;
+        etatDuJeu = EN_COURS;
     }
 
     public int getNbreTentatives() {

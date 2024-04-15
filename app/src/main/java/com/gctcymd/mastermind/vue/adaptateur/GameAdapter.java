@@ -45,6 +45,5 @@ public class GameAdapter extends ArrayAdapter<Tentative> {
         if (tentative==null){
 
         }
-        //final Tentative tentative = this.
     }
 }
