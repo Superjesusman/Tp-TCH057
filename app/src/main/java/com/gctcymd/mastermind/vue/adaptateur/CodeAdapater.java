@@ -19,13 +19,17 @@ public class CodeAdapater extends ArrayAdapter<String> {
     private Resources ressources;
     private Couleur[] lesCodeDeCouleurs;
 
-    public CodeAdapater(@NonNull Context context, int resource, @NonNull Code code) {
+    public CodeAdapater(@NonNull Context context, int resource) { // Constructeur temporaire pour faire des tests
+        super(context, resource);
+    }
+
+    /*public CodeAdapater(@NonNull Context context, int resource, @NonNull Code code) {
         //super(context, resource, code.getCode());
         this.context = context;
         this.viewResourceId = resource;
         this.ressources = context.getResources();
         this.lesCodeDeCouleurs = code.getCode();
-    }
+    }*/
 
     @Override
     public int getCount() {

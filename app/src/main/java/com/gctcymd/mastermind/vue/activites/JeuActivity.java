@@ -2,12 +2,18 @@ package com.gctcymd.mastermind.vue.activites;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.GridView;
+//import android.widget.GridLayout;
+import androidx.gridlayout.widget.GridLayout;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,18 +28,20 @@ import com.gctcymd.mastermind.vue.adaptateur.GameAdapter;
 import com.gctcymd.mastermind.vue.fragment.CancelGameDialogFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class JeuActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, View.OnClickListener, CancelGameDialogFragment.DialogListener{
     private BottomNavigationView bottomNavigationView;
     private Button btnAbandon, btnNouvellePartie, btnValiderJeu;
 
-    private GridView gridJeu;
+    private GridLayout gridJeu;
     private LinearLayout layoutCouleurs;
-
+    private Button[][] boutonsTentative, boutonsFeedback;
     private Configuration configuration;
     String user;
     private PresentateurMastermind presentateurMastermind;
     private GameAdapter adaptateur;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,14 +64,52 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
 
         this.configuration = new Configuration();
 
-        //if intent
+       //if intent
         Intent intent = getIntent();
         configuration.setLongueurCode(intent.getIntExtra("LONGUEUR_CODE", 4));
         configuration.setNbreCouleurs(intent.getIntExtra("NOMBRE_COULEURS", 8));
         configuration.setMaxTentatives(intent.getIntExtra("NOMBRES_TENTATIVES", 10));
 
+        //array of all buttons for attempts
+        boutonsTentative = new Button[configuration.getMaxTentatives()][configuration.getLongueurCode()];
+        boutonsFeedback =  new Button[configuration.getMaxTentatives()][configuration.getLongueurCode()];
+
         //generate grid
-        gridJeu = findViewById(R.id.gridJeu);
+        gridJeu = findViewById(R.id.gridPartie);
+        gridJeu.setColumnCount(configuration.getLongueurCode()+2);
+        gridJeu.setRowCount(configuration.getMaxTentatives());
+
+
+
+        for (int i = 1; i < configuration.getMaxTentatives()+1; i++) {
+            TextView numTentative = new TextView(this);
+            numTentative.setText(String.valueOf(i));
+            numTentative.setTextSize(20);
+            gridJeu.addView(numTentative);
+            for (int j = 0; j < configuration.getLongueurCode(); j++) {
+                Button button = new Button(this);
+                Drawable drawable = getResources().getDrawable(R.drawable.bouton_oval);
+                button.setBackground(drawable);
+                button.setOnClickListener(this);
+                boutonsTentative[i-1][j] = button;
+                gridJeu.addView(button);
+            }
+            GridLayout gridFeedback = new GridLayout(this);
+
+            gridFeedback.setColumnCount(2);
+
+            for (int j = 0; j < configuration.getLongueurCode(); j++) {
+                Button button = new Button(this);
+                Drawable drawable = getResources().getDrawable(R.drawable.bouton_oval);
+                button.setBackground(drawable);
+                button.setWidth(10);
+                boutonsFeedback[i-1][j] = button;
+                gridFeedback.addView(button);
+            }
+            gridFeedback.setBackgroundColor(Color.GRAY);
+            gridJeu.addView(gridFeedback);
+        }
+        /*
         for(int i = 0; i <  configuration.getMaxTentatives(); i++){
 
         }
@@ -71,7 +117,7 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
 //        gridview.setAdapter(adapter);
 
         //
-
+         */
         startGame();
     }
 
@@ -114,6 +160,10 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
             Code tentative = new Code(couleursDuJoueur);
             this.presentateurMastermind.afficheNouvelleTentative(tentative);
             //afficher le feedback
+        }
+        else{
+            Toast.makeText(getApplicationContext(), "test!",
+                    Toast.LENGTH_SHORT).show();
         }
     }
 
