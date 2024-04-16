@@ -1,3 +1,30 @@
 <resources>
-    <string name="app_name">TP</string>
+    <string name="app_name">Mastermind</string>
+    <string name="annuler">Annuler</string>
+    <string name="soumettre">Soumettre</string>
+    <string name="configuration">Configuration</string>
+    <string name="longueur_du_code">Longueur du code</string>
+    <string name="nombre">Nombre</string>
+    <string name="nombre_de_tentatives">Nombre de tentatives</string>
+    <string name="nombre_de_couleurs" translatable="true">Nombre de couleurs</string>
+    <string name="nombre_maximum_de_tentatives" translatable="true">Nombre maximum de tentatives</string>
+    <string name="abandon">abandon</string>
+    <string name="valider">Valider</string>
+    <string name="nouvelle_partie">nouvelle partie</string>
+    <string name="home">Home</string>
+    <string name="game">Game</string>
+    <string name="history">History</string>
+    <string name="settings">Settings</string>
+    <string name="renitialiser">Réinitialiser</string>
+    <string name="connexion">Connexion</string>
+    <string name="historique">Historique</string>
+    <string name="jeu">Jeu</string>
+    <string name="mastermind">Mastermind</string>
+    <string name="exemple_email_com">exemple@email.com</string>
+    <string name="bienvenue">Bienvenue!</string>
+    <string name="tu_veux_t_amuser">Tu veux t\'amuser?</string>
+    <string name="veuillez_rentrer">Veuillez entrer</string>
+    <string name="votre_courriel">votre courriel</string>
+    <string name="obligatoire">*Obligatoire</string>
+    <string name="consulter_les_parties_ant_rieures">Consulter les parties antérieures:</string>
 </resources>

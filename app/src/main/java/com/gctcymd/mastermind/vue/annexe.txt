@@ -1,0 +1,20 @@
+        //Construction de la grille
+        GridLayout grille = findViewById(R.id.gridLayout);
+        grille.setColumnCount(longCode + 2);
+        grille.setRowCount(nTentatives);
+        //grille.addView(composant);
+
+        //With presenter
+        //construction des choix de couleurs
+        LinearLayout layoutCouleurs = findViewById(R.id.layoutChoixCouleurs);
+        Drawable drawable = getResources().getDrawable(R.drawable.bouton_oval);
+        //for ... nCouleur
+        //new button
+        Button newButton = new Button(this);
+        newButton.setBackground(drawable);
+        newButton.getBackground().setTint(0xffff0000);
+        ViewGroup.LayoutParams params;
+        params = newButton.getLayoutParams();
+        params.width = 100;
+        params.height = 100;
+        ((ViewGroup.MarginLayoutParams)params).setMargins(10,5,10,5);
