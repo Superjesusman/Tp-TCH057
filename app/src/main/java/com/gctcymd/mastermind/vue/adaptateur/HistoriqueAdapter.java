@@ -79,8 +79,8 @@ public class HistoriqueAdapter extends ArrayAdapter<HSession> {
             CodeSecret codeSecret = hSession.getCodeSecret();
             int i = 0;
             for (Couleur c: codeSecret.getCode()) {
-                if (c.getCodeHex() != null){
-                    hColors.get(i).setBackgroundColor(c.codeEnInt());
+                if (c.getCodeHex() != 0){
+                    hColors.get(i).setBackgroundColor(c.getCodeHex());
                     hColors.get(i).setVisibility(View.VISIBLE);
                 }
                 i++;

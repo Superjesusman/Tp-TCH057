@@ -8,6 +8,9 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.gctcymd.mastermind.R;
+import com.gctcymd.mastermind.modele.entite.Code;
+import com.gctcymd.mastermind.modele.entite.CodeSecret;
+import com.gctcymd.mastermind.modele.entite.Couleur;
 import com.gctcymd.mastermind.modele.entite.HSession;
 import com.gctcymd.mastermind.vue.adaptateur.HistoriqueAdapter;
 
@@ -26,7 +29,8 @@ public class HistoriqueActivity extends AppCompatActivity {
         lv = findViewById(R.id.lvHistorique);
         List<HSession> listeDeSessions = new ArrayList<HSession>();
 
-        int[] cS = {Color.RED, Color.BLUE, Color.GREEN, Color.LTGRAY};
+        Couleur[] test = {new Couleur(Color.RED), new Couleur(Color.BLUE), new Couleur(Color.GREEN), new Couleur(Color.LTGRAY)};
+        Code cS = new Code(test);
 
         listeDeSessions.add(new HSession("test@test.ca", "succes", 4, 4, cS));
         listeDeSessions.add(new HSession("test@test.ca", "succes", 4, 7, cS));
