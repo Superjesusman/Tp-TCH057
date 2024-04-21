@@ -1,13 +1,17 @@
 package com.gctcymd.mastermind.vue.adaptateur;
 
+
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -63,13 +67,13 @@ public class HistoriqueAdapter extends ArrayAdapter<HSession> {
             //final ImageView hColor4 = (ImageView) view.findViewById(R.id.historiqueColor4);
             //final ImageView hColor5 = (ImageView) view.findViewById(R.id.historiqueColor5);
             //final ImageView hColor6 = (ImageView) view.findViewById(R.id.historiqueColor6);
-            ArrayList<ImageView> hColors = new ArrayList<>();
-            hColors.add((ImageView) view.findViewById(R.id.historiqueColor1));
-            hColors.add((ImageView) view.findViewById(R.id.historiqueColor2));
-            hColors.add((ImageView) view.findViewById(R.id.historiqueColor3));
-            hColors.add((ImageView) view.findViewById(R.id.historiqueColor4));
-            hColors.add((ImageView) view.findViewById(R.id.historiqueColor5));
-            hColors.add((ImageView) view.findViewById(R.id.historiqueColor6));
+            ArrayList<Button> hColors = new ArrayList<>();
+            hColors.add((Button) view.findViewById(R.id.historiqueColor1));
+            hColors.add((Button) view.findViewById(R.id.historiqueColor2));
+            hColors.add((Button) view.findViewById(R.id.historiqueColor3));
+            hColors.add((Button) view.findViewById(R.id.historiqueColor4));
+            hColors.add((Button) view.findViewById(R.id.historiqueColor5));
+            hColors.add((Button) view.findViewById(R.id.historiqueColor6));
 
             hCourriel.setText(hSession.getCourriel());
             hNbCouleurs.setText(String.valueOf(hSession.getNbCouleurs()));
@@ -77,11 +81,9 @@ public class HistoriqueAdapter extends ArrayAdapter<HSession> {
             hNbTentatives.setText(String.valueOf(hSession.getNbTentatives()));
             int[] codeSecret = hSession.getCodeSecret();
             for (int i=0; i<codeSecret.length ; i++) {
-                if (codeSecret[i] == 0){
-                    hColors.get(i).setVisibility(View.INVISIBLE);
-                }
-                else{
-                    hColors.get(i).setBackgroundTintList(ColorStateList.valueOf(codeSecret[i]));
+                if (codeSecret[i] != 0){
+                    hColors.get(i).setBackgroundColor(codeSecret[i]);
+                    hColors.get(i).setVisibility(View.VISIBLE);
                 }
             }
         }
