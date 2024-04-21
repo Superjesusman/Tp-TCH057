@@ -11,4 +11,8 @@ public class Couleur {
     public String getCodeHex() {
         return codeHex;
     }
+
+    public int codeEnInt(){
+        return (int)Long.parseLong(codeHex,16);
+    }
 }

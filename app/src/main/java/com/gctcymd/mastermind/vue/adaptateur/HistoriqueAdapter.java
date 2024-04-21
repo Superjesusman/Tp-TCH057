@@ -14,6 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.gctcymd.mastermind.R;
+import com.gctcymd.mastermind.modele.entite.CodeSecret;
+import com.gctcymd.mastermind.modele.entite.Couleur;
 import com.gctcymd.mastermind.modele.entite.HSession;
 
 import java.util.ArrayList;
@@ -74,12 +76,14 @@ public class HistoriqueAdapter extends ArrayAdapter<HSession> {
             hNbCouleurs.setText(String.valueOf(hSession.getNbCouleurs()));
             hResultat.setText(hSession.getResultat());
             hNbTentatives.setText(String.valueOf(hSession.getNbTentatives()));
-            int[] codeSecret = hSession.getCodeSecret();
-            for (int i=0; i<codeSecret.length ; i++) {
-                if (codeSecret[i] != 0){
-                    hColors.get(i).setBackgroundColor(codeSecret[i]);
+            CodeSecret codeSecret = hSession.getCodeSecret();
+            int i = 0;
+            for (Couleur c: codeSecret.getCode()) {
+                if (c.getCodeHex() != null){
+                    hColors.get(i).setBackgroundColor(c.codeEnInt());
                     hColors.get(i).setVisibility(View.VISIBLE);
                 }
+                i++;
             }
         }
     return view;

@@ -65,13 +65,17 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
         btnNouvellePartie.setOnClickListener(this);
         btnValiderJeu.setOnClickListener(this);
 
+        //Obtenir la configuration choisie
         this.configuration = new Configuration();
 
-        //if intent
         Intent intent = getIntent();
         configuration.setLongueurCode(intent.getIntExtra("LONGUEUR_CODE", 4));
         configuration.setNbreCouleurs(intent.getIntExtra("NOMBRE_COULEURS", 8));
         configuration.setMaxTentatives(intent.getIntExtra("NOMBRES_TENTATIVES", 10));
+
+        //Obtenir l'utilisateur
+        String tempUser = "johndoe@mail.com"; //TEMP USER for test
+
 
         //array of all buttons for attempts
         boutonsTentative = new Button[configuration.getMaxTentatives()][configuration.getLongueurCode()];
@@ -131,16 +135,6 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
             layoutCouleurs.addView(button);
         }
 
-
-        /*
-        for(int i = 0; i <  configuration.getMaxTentatives(); i++){
-
-        }
-//        CustomListAdapter adapter=new CustomListAdapter(HomePage.this,allElementDetails);
-//        gridview.setAdapter(adapter);
-
-        //
-         */
         startGame();
     }
 
@@ -154,7 +148,7 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
             case R.id.game:
                 return true;
             case R.id.history:
-                //startActivity(new Intent(getApplicationContext(),HistoryActivity.class));
+                startActivity(new Intent(getApplicationContext(),HistoriqueActivity.class));
                 return true;
             case R.id.settings:
                 DialogFragment newFragment = new CancelGameDialogFragment();
