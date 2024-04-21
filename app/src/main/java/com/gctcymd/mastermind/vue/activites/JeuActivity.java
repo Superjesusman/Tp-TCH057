@@ -37,6 +37,7 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
 
     private GridLayout gridJeu;
     private LinearLayout layoutCouleurs;
+    private Button[] boutonsCouleurs;
     private Button[][] boutonsTentative, boutonsFeedback;
     private Configuration configuration;
     String user;
@@ -58,13 +59,15 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
         btnNouvellePartie = findViewById(R.id.btnNouvellePartie);
         btnValiderJeu = findViewById(R.id.btnValiderJeu);
 
+        layoutCouleurs = findViewById(R.id.layoutChoixCouleurs);
+
         btnAbandon.setOnClickListener(this);
         btnNouvellePartie.setOnClickListener(this);
         btnValiderJeu.setOnClickListener(this);
 
         this.configuration = new Configuration();
 
-       //if intent
+        //if intent
         Intent intent = getIntent();
         configuration.setLongueurCode(intent.getIntExtra("LONGUEUR_CODE", 4));
         configuration.setNbreCouleurs(intent.getIntExtra("NOMBRE_COULEURS", 8));
@@ -73,6 +76,7 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
         //array of all buttons for attempts
         boutonsTentative = new Button[configuration.getMaxTentatives()][configuration.getLongueurCode()];
         boutonsFeedback =  new Button[configuration.getMaxTentatives()][configuration.getLongueurCode()];
+        boutonsCouleurs = new Button[configuration.getNbreCouleurs()];
 
         //generate grid
         gridJeu = findViewById(R.id.gridPartie);
@@ -80,35 +84,54 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
         gridJeu.setRowCount(configuration.getMaxTentatives());
 
 
-
+        //filling the grid with buttons
         for (int i = 1; i < configuration.getMaxTentatives()+1; i++) {
             TextView numTentative = new TextView(this);
             numTentative.setText(String.valueOf(i));
             numTentative.setTextSize(20);
             gridJeu.addView(numTentative);
+
             for (int j = 0; j < configuration.getLongueurCode(); j++) {
                 Button button = new Button(this);
                 Drawable drawable = getResources().getDrawable(R.drawable.bouton_oval);
                 button.setBackground(drawable);
                 button.setOnClickListener(this);
+                GridLayout.LayoutParams params = new GridLayout.LayoutParams();
+                params.width = 150; // Réduire la largeur du bouton
+                params.height = 150; // Réduire la hauteur du bouton
+                button.setLayoutParams(params);
                 boutonsTentative[i-1][j] = button;
                 gridJeu.addView(button);
             }
             GridLayout gridFeedback = new GridLayout(this);
-
+            GridLayout.LayoutParams params = new GridLayout.LayoutParams();
+            params.width = ViewGroup.LayoutParams.MATCH_PARENT; // Réduire la largeur du bouton
+            params.height = ViewGroup.LayoutParams.MATCH_PARENT; // Réduire la hauteur du bouton
+            //gridFeedback.setLayoutParams(params);
             gridFeedback.setColumnCount(2);
-
+            //adding the feedback buttons
             for (int j = 0; j < configuration.getLongueurCode(); j++) {
                 Button button = new Button(this);
                 Drawable drawable = getResources().getDrawable(R.drawable.bouton_oval);
                 button.setBackground(drawable);
-                button.setWidth(10);
                 boutonsFeedback[i-1][j] = button;
+                params.width = 100; // Réduire la largeur du bouton
+                params.height = 100; // Réduire la hauteur du bouton
+                //button.setLayoutParams(params);
                 gridFeedback.addView(button);
             }
             gridFeedback.setBackgroundColor(Color.GRAY);
             gridJeu.addView(gridFeedback);
         }
+        for (int i = 0; i < configuration.getNbreCouleurs(); i++) {
+            Button button = new Button(this);
+            Drawable drawable = getResources().getDrawable(R.drawable.bouton_oval);
+            button.setBackground(drawable);
+            boutonsCouleurs[i] = button;
+            layoutCouleurs.addView(button);
+        }
+
+
         /*
         for(int i = 0; i <  configuration.getMaxTentatives(); i++){
 
