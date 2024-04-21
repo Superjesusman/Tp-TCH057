@@ -6,18 +6,15 @@ import android.widget.ListView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.gctcymd.mastermind.R;
-import com.gctcymd.mastermind.modele.HSession;
+import com.gctcymd.mastermind.modele.entite.HSession;
 import com.gctcymd.mastermind.vue.adaptateur.HistoriqueAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Historique extends AppCompatActivity {
+public class HistoriqueActivity extends AppCompatActivity {
 
     private ListView lv;
 

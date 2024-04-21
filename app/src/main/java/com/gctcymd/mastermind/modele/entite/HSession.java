@@ -1,4 +1,4 @@
-package com.gctcymd.mastermind.modele;
+package com.gctcymd.mastermind.modele.entite;
 
 public class HSession {
     private String courriel, resultat;

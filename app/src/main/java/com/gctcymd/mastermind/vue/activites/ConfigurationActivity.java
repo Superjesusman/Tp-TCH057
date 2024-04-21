@@ -22,6 +22,8 @@ public class ConfigurationActivity extends AppCompatActivity implements BottomNa
 
     private Button btnReinitialiser, btnSoumettre;
 
+    private static final int CODE_ACTIVITE_1 = 1;
+
     private static final Integer[] valLongCode = new Integer[]{2, 3, 4, 5, 6};
     private static final Integer[] valNCouleurs = new Integer[]{2, 3, 4, 5, 6, 7, 8};
     private static final Integer[] valNTentatives = new Integer[]{8, 9, 10, 11, 12};
@@ -69,7 +71,7 @@ public class ConfigurationActivity extends AppCompatActivity implements BottomNa
                 startActivity(new Intent(getApplicationContext(),JeuActivity.class));
                 return true;
             case R.id.history:
-                //startActivity(new Intent(getApplicationContext(),HistoryActivity.class));
+                startActivity(new Intent(getApplicationContext(),HistoriqueActivity.class));
                 return true;
             case R.id.settings:
                 return true;

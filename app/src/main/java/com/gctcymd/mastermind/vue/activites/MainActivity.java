@@ -2,7 +2,6 @@ package com.gctcymd.mastermind.vue.activites;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,9 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.StringDef;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import com.gctcymd.mastermind.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -125,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             startActivity(new Intent(getApplicationContext(),ConfigurationActivity.class));
         }
         if(v==history){
-            startActivity(new Intent(getApplicationContext(),Historique.class));
+            startActivity(new Intent(getApplicationContext(), HistoriqueActivity.class));
         }
         if(v==game){
             startActivity(new Intent(getApplicationContext(),JeuActivity.class));

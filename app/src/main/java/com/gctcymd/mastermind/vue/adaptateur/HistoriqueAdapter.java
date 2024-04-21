@@ -2,24 +2,19 @@ package com.gctcymd.mastermind.vue.adaptateur;
 
 
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.content.res.Resources;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.gctcymd.mastermind.R;
-import com.gctcymd.mastermind.modele.HSession;
+import com.gctcymd.mastermind.modele.entite.HSession;
 
 import java.util.ArrayList;
 import java.util.List;

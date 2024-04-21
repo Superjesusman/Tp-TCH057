@@ -39,7 +39,7 @@ public class HttpJsonService {
 
         List<CodeSecret> codeSecrets = new ArrayList<>();
 
-        if(jsonData.length() > 0) {
+        if(!jsonData.isEmpty()) {
             ObjectMapper objectMapper = new ObjectMapper();
             try {
                 codeSecrets = Arrays.asList(objectMapper.readValue(jsonData,CodeSecret[].class));
