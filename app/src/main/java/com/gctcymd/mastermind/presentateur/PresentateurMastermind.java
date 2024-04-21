@@ -5,25 +5,30 @@ import static java.util.Arrays.copyOfRange;
 import android.app.Activity;
 
 import com.gctcymd.mastermind.modele.Mastermind;
+import com.gctcymd.mastermind.modele.dao.HttpJsonService;
 import com.gctcymd.mastermind.modele.entite.Code;
 import com.gctcymd.mastermind.modele.entite.CodeSecret;
 import com.gctcymd.mastermind.modele.ModelManager;
-import com.gctcymd.mastermind.modele.dao.ConfigurationDao;
 import com.gctcymd.mastermind.modele.entite.Configuration;
 import com.gctcymd.mastermind.modele.entite.Couleur;
+import com.gctcymd.mastermind.modele.entite.EtatDuJeu;
 import com.gctcymd.mastermind.vue.activites.JeuActivity;
 
 import org.json.JSONException;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class PresentateurMastermind {
     private Activity activite;
     private Mastermind game;
+    HttpJsonService h;
+
     public PresentateurMastermind(Activity activite) {
         this.activite = activite;
         this.game = ModelManager.getGame();
+        this.h = new HttpJsonService();
     }
 
     public void lancerJeu(Configuration configuration, String user) {
@@ -33,10 +38,9 @@ public class PresentateurMastermind {
                 try {
                     game.setConfiguration(configuration);
                     game.setUser(user);
-
-                    CodeSecret codeSecret = ConfigurationDao.getRandomCodeSecret(configuration);
+                    CodeSecret codeSecret = h.getRandomCodeSecret(configuration);
                     game.setCodeSecret(codeSecret);
-                    Couleur[] couleursDispos = copyOfRange(ConfigurationDao.getCouleursDispos(), 0, configuration.getNbreCouleurs());
+                    Couleur[] couleursDispos = copyOfRange(h.getCouleursDisponibles(), 0, configuration.getNbreCouleurs());
                     ((JeuActivity) activite).runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -59,16 +63,35 @@ public class PresentateurMastermind {
                     });
                 }
             }
-        };
+        }.start();
     }
 
-    public void afficheNouvelleTentative(Code input) {
-        //tentative dans game
-        //affiche tentative et feedback
-        //affiche si victoire ou defaite
-    }
+    public void nouvelleTentative(Code input) {
+        game.nouvelleTentative(input);
+        ((JeuActivity) activite).afficherFeedback(game.getLastFeedback());
 
-    public int getNbreTentatives() {
-        return game.getNbreTentatives();
+        if(game.getEtatDuJeu() != EtatDuJeu.EN_COURS) {
+            if(game.getEtatDuJeu() == EtatDuJeu.VICTOIRE) {
+                ((JeuActivity) activite).afficherFin(EtatDuJeu.VICTOIRE);
+            } else if (game.getEtatDuJeu() == EtatDuJeu.DEFAITE) {
+                ((JeuActivity) activite).afficherFin(EtatDuJeu.DEFAITE);
+            }
+            new Thread() {
+                @Override
+                public void run() {
+                    try {
+                        h.pushNewStats();
+                        //and locally as well
+                    } catch (IOException e) {
+                        ((JeuActivity) activite).runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                ((JeuActivity) activite).afficherMessage("Problème d'accès à l'API");
+                            }
+                        });
+                    }
+                }
+            } .start();
+        }
     }
 }

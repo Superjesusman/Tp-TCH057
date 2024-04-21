@@ -23,6 +23,8 @@ import com.gctcymd.mastermind.R;
 import com.gctcymd.mastermind.modele.entite.Code;
 import com.gctcymd.mastermind.modele.entite.Configuration;
 import com.gctcymd.mastermind.modele.entite.Couleur;
+import com.gctcymd.mastermind.modele.entite.EtatDuJeu;
+import com.gctcymd.mastermind.modele.entite.Feedback;
 import com.gctcymd.mastermind.presentateur.PresentateurMastermind;
 import com.gctcymd.mastermind.vue.adaptateur.GameAdapter;
 import com.gctcymd.mastermind.vue.fragment.CancelGameDialogFragment;
@@ -76,6 +78,8 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
         //Obtenir l'utilisateur
         String tempUser = "johndoe@mail.com"; //TEMP USER for test
 
+        this.presentateurMastermind = new PresentateurMastermind(this);
+        presentateurMastermind.lancerJeu(configuration, tempUser);
 
         //array of all buttons for attempts
         boutonsTentative = new Button[configuration.getMaxTentatives()][configuration.getLongueurCode()];
@@ -134,8 +138,6 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
             boutonsCouleurs[i] = button;
             layoutCouleurs.addView(button);
         }
-
-        startGame();
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -175,7 +177,7 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
 
             //
             Code tentative = new Code(couleursDuJoueur);
-            this.presentateurMastermind.afficheNouvelleTentative(tentative);
+            this.presentateurMastermind.nouvelleTentative(tentative);
             //afficher le feedback
         }
         else{
@@ -194,11 +196,6 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
         scrapGame();//scrap game
         this.presentateurMastermind.lancerJeu(configuration, user);
     }
-
-    private void startGame(){
-
-    }
-
     private void scrapGame(){
 
     }
@@ -214,5 +211,11 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
     }
 
     public void afficherMessage(String s) {
+    }
+
+    public void afficherFeedback(Feedback lastFeedback) {
+    }
+
+    public void afficherFin(EtatDuJeu etatDuJeu) {
     }
 }

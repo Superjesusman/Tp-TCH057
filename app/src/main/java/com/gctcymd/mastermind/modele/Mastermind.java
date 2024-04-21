@@ -65,7 +65,7 @@ public class Mastermind {
         this.codeSecret = codeSecret;
     }
 
-    //Nouvelle tentative de la part du joeur
+    //Nouvelle tentative de la part du joueur
     public boolean nouvelleTentative(Code essaiDeCode){
         Tentative tentative = new Tentative(nbreTentatives, essaiDeCode, codeSecret);
         nbreTentatives++;
@@ -80,5 +80,9 @@ public class Mastermind {
             etatDuJeu = EtatDuJeu.DEFAITE;
         }
         return listTentatives.add(tentative);
+    }
+
+    public Feedback getLastFeedback(){
+        return listTentatives.get(nbreTentatives - 1).getFeedback();
     }
 }

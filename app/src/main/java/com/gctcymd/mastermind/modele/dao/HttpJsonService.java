@@ -1,12 +1,11 @@
 package com.gctcymd.mastermind.modele.dao;
 
-import static java.util.Arrays.copyOfRange;
-
 import android.util.Log;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gctcymd.mastermind.modele.entite.CodeSecret;
+import com.gctcymd.mastermind.modele.entite.Configuration;
 import com.gctcymd.mastermind.modele.entite.Couleur;
 
 import org.json.JSONException;
@@ -24,10 +23,13 @@ import okhttp3.ResponseBody;
 
 public class HttpJsonService {
     private static String URL_POINT_ENTREE = "http://10.0.2.2:3000";
-    public CodeSecret getRandomCodeSecret(int longueurCode, int nbCouleur) throws IOException, JSONException {
+    public CodeSecret getRandomCodeSecret(Configuration config) throws IOException, JSONException {
         OkHttpClient okHttpClient = new OkHttpClient();
 
         String path = "/codesSecrets?";
+
+        int longueurCode = config.getLongueurCode();
+        int nbCouleur = config.getNbreCouleurs();
         if(nbCouleur != 0) path+="nbCouleurs="+nbCouleur;
         Request request = new Request.Builder().url(URL_POINT_ENTREE + path).build();
 
@@ -76,5 +78,14 @@ public class HttpJsonService {
             return couleursDipos;
         }
         return null;
+    }
+
+    public void pushNewStats() throws IOException {
+        OkHttpClient okHttpClient = new OkHttpClient();
+
+        String path = "/stats";
+        Request request = new Request.Builder().url(URL_POINT_ENTREE + path).build();
+
+        //new
     }
 }
