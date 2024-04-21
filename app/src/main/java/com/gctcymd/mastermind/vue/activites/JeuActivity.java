@@ -67,7 +67,7 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
 
         this.configuration = new Configuration();
 
-       //if intent
+        //if intent
         Intent intent = getIntent();
         configuration.setLongueurCode(intent.getIntExtra("LONGUEUR_CODE", 4));
         configuration.setNbreCouleurs(intent.getIntExtra("NOMBRE_COULEURS", 8));
