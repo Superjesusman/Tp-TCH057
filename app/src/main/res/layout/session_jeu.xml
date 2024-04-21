@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/courrielNom"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/courriel"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/codeSecretNom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/code_secret"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/courrielNom" />
+
+    <ImageView
+        android:id="@+id/historiqueColor1"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bouton_oval" />
+
+    <ImageView
+        android:id="@+id/historiqueColor2"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/historiqueColor1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bouton_oval" />
+
+    <ImageView
+        android:id="@+id/historiqueColor3"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/historiqueColor2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bouton_oval" />
+
+    <ImageView
+        android:id="@+id/historiqueColor4"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/historiqueColor3"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bouton_oval" />
+
+    <ImageView
+        android:id="@+id/historiqueColor5"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/historiqueColor4"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bouton_oval" />
+
+    <ImageView
+        android:id="@+id/historiqueColor6"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/historiqueColor5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bouton_oval" />
+
+    <TextView
+        android:id="@+id/hNbCouleursNom"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/nombre_de_couleurs_nom"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/codeSecretNom" />
+
+    <TextView
+        android:id="@+id/hCourriel"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/hNbCouleurs"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/historiqueColor1" />
+
+    <TextView
+        android:id="@+id/hResultatNom"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/resultat_nom"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hNbCouleursNom" />
+
+    <TextView
+        android:id="@+id/hResultat"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hNbCouleurs" />
+
+    <TextView
+        android:id="@+id/hNbTentativesNom"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/nombre_de_tentatives_nom"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hResultatNom" />
+
+    <TextView
+        android:id="@+id/hNbTentatives"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hResultat" />
+
+    <TextView
+        android:id="@+id/hLigneSep"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_marginTop="5dp"
+        android:background="#000000"
+        app:layout_constraintTop_toBottomOf="@+id/hNbTentativesNom"
+        tools:layout_editor_absoluteX="76dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

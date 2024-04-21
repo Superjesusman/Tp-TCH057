@@ -6,4 +6,9 @@
     </style>
 
     <style name="Theme.TP" parent="Base.Theme.TpTch057" />
+  <!-- Base application theme. -->
+    <style name="Base.Theme.TP" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
 </resources>

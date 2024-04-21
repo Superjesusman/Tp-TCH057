@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             startActivity(new Intent(getApplicationContext(),ConfigurationActivity.class));
         }
         if(v==history){
-            //startActivity(new Intent(getApplicationContext(),HistoryActivity.class));
+            startActivity(new Intent(getApplicationContext(),Historique.class));
         }
         if(v==game){
             startActivity(new Intent(getApplicationContext(),JeuActivity.class));
