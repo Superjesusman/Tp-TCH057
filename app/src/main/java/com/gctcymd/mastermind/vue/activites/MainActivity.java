@@ -3,21 +3,17 @@ package com.gctcymd.mastermind.vue.activites;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.gctcymd.mastermind.R;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener , View.OnClickListener {
-    private BottomNavigationView bottomNavigationView;
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private String currentEmail = "";
     private boolean isConnected = false;
     private TextView welcomeMessage, emailMessage, warningMessage, funMessage;
@@ -27,9 +23,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        bottomNavigationView.setOnNavigationItemSelectedListener(this);
-        bottomNavigationView.setSelectedItemId(R.id.home);
 
         welcomeMessage = findViewById(R.id.textViewWelcomeMessage);
         emailMessage = findViewById(R.id.textViewEmail);
@@ -50,36 +43,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         game.setVisibility(View.INVISIBLE);
         game.setVisibility(View.INVISIBLE);
         config.setVisibility(View.INVISIBLE);
-    }
-
-    @SuppressLint("NonConstantResourceId")
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        //if not connected and item.getItemId() != R.id.home, pop up to connect!
-        switch (item.getItemId()) {
-            case R.id.home:
-                return true;
-            case R.id.game:
-                if (!isConnected) {
-                    Toast.makeText(getApplicationContext(), "Veuillez entrer votre email!",
-                            Toast.LENGTH_SHORT).show();
-                    return false;
-                }
-                startActivity(new Intent(getApplicationContext(),JeuActivity.class));
-                return true;
-            case R.id.history:
-                //startActivity(new Intent(getApplicationContext(),HistoryActivity.class));
-                return true;
-            case R.id.settings:
-                if (!isConnected) {
-                    Toast.makeText(getApplicationContext(), "Veuillez entrer votre email!",
-                            Toast.LENGTH_SHORT).show();
-                    return false;
-                }
-                startActivity(new Intent(getApplicationContext(),ConfigurationActivity.class));
-                return true;
-        }
-        return false;
     }
 
     @SuppressLint("SetTextI18n")

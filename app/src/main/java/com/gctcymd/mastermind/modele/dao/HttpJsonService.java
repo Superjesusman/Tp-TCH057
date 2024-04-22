@@ -22,7 +22,7 @@ import okhttp3.Response;
 import okhttp3.ResponseBody;
 
 public class HttpJsonService {
-    private static String URL_POINT_ENTREE = "http://10.0.2.2:3000";
+    private static final String URL_POINT_ENTREE = "http://10.0.2.2:3000";
     public CodeSecret getRandomCodeSecret(Configuration config) throws IOException, JSONException {
         OkHttpClient okHttpClient = new OkHttpClient();
 
@@ -66,16 +66,24 @@ public class HttpJsonService {
 
         Log.d("HttpJsonService:getCouleursDisponibles", jsonData);
 
-        Couleur[] couleursDipos;
+        Couleur[] couleursDisponibles;
+        String[] str;
 
-        if(jsonData.length() > 0) {
+        if(!jsonData.isEmpty()) {
             ObjectMapper objectMapper = new ObjectMapper();
             try {
-                couleursDipos = objectMapper.readValue(jsonData,Couleur[].class);
+                str = objectMapper.readValue(jsonData,String[].class);
+                couleursDisponibles = new Couleur[str.length];
             } catch (JsonProcessingException e) {
                 throw new RuntimeException(e);
             }
-            return couleursDipos;
+
+            int i = 0;
+            for (String s:str){
+                couleursDisponibles[i] = new Couleur(s);
+                i++;
+            }
+            return couleursDisponibles;
         }
         return null;
     }

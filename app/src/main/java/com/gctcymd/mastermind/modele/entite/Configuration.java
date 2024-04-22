@@ -5,6 +5,9 @@ public class Configuration {
     private int longueurCode;
     private int nbreCouleurs;
 
+    public Configuration() {
+    }
+
     public int getMaxTentatives() {
         return maxTentatives;
     }
@@ -26,15 +29,6 @@ public class Configuration {
     }
 
     public void setNbreCouleurs(int nbreCouleurs) {
-        this.nbreCouleurs = nbreCouleurs;
-    }
-
-    public Configuration() {
-    }
-
-    public Configuration(int maxTentatives, int longueurCode, int nbreCouleurs) {
-        this.maxTentatives = maxTentatives;
-        this.longueurCode = longueurCode;
         this.nbreCouleurs = nbreCouleurs;
     }
 }

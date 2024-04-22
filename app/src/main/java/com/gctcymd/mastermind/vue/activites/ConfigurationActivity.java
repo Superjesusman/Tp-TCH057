@@ -1,16 +1,13 @@
 package com.gctcymd.mastermind.vue.activites;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.gctcymd.mastermind.R;
@@ -18,11 +15,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ConfigurationActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, View.OnClickListener, AdapterView.OnItemSelectedListener {
     private BottomNavigationView bottomNavigationView;
+
     private Spinner spinLongCode, spinNCouleurs, spinNTentatives;
 
     private Button btnReinitialiser, btnSoumettre;
-
-    private static final int CODE_ACTIVITE_1 = 1;
 
     private static final Integer[] valLongCode = new Integer[]{2, 3, 4, 5, 6};
     private static final Integer[] valNCouleurs = new Integer[]{2, 3, 4, 5, 6, 7, 8};
@@ -37,11 +33,6 @@ public class ConfigurationActivity extends AppCompatActivity implements BottomNa
         //Creation
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configuration);
-
-        //Construction du menu navigation
-        bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        bottomNavigationView.setOnNavigationItemSelectedListener(this);
-        bottomNavigationView.setSelectedItemId(R.id.settings);
 
         //Construction des spinner et de leurs valeurs
         spinLongCode = findViewById(R.id.spinnerLongCode);
@@ -58,25 +49,6 @@ public class ConfigurationActivity extends AppCompatActivity implements BottomNa
         btnSoumettre = findViewById(R.id.btnSoumettreConfig);
         btnReinitialiser.setOnClickListener(this);
         btnSoumettre.setOnClickListener(this);
-    }
-
-    @SuppressLint("NonConstantResourceId")
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.home:
-                startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                return true;
-            case R.id.game:
-                startActivity(new Intent(getApplicationContext(),JeuActivity.class));
-                return true;
-            case R.id.history:
-                startActivity(new Intent(getApplicationContext(),HistoriqueActivity.class));
-                return true;
-            case R.id.settings:
-                return true;
-        }
-        return false;
     }
 
     private void afficherSpinner(Integer[] intArray, Spinner spinner, int defaultPosition){

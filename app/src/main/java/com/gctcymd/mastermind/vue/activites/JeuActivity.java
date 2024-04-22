@@ -1,6 +1,5 @@
 package com.gctcymd.mastermind.vue.activites;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -9,8 +8,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-//import android.widget.GridLayout;
-import androidx.gridlayout.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
+import androidx.gridlayout.widget.GridLayout;
 
 import com.gctcymd.mastermind.R;
 import com.gctcymd.mastermind.modele.entite.Code;
@@ -30,13 +28,9 @@ import com.gctcymd.mastermind.vue.adaptateur.GameAdapter;
 import com.gctcymd.mastermind.vue.fragment.CancelGameDialogFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class JeuActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, View.OnClickListener, CancelGameDialogFragment.DialogListener{
     private BottomNavigationView bottomNavigationView;
     private Button btnAbandon, btnNouvellePartie, btnValiderJeu;
-
     private GridLayout gridJeu;
     private LinearLayout layoutCouleurs;
     private Button[] boutonsCouleurs;
@@ -44,17 +38,12 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
     private Configuration configuration;
     String user;
     private PresentateurMastermind presentateurMastermind;
-    private GameAdapter adaptateur;
+    private GameAdapter adaptateur; //dude!!! utilise mon adapteur
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jeu);
-
-        //Construction du menu navigation
-        bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        bottomNavigationView.setOnNavigationItemSelectedListener(this);
-        bottomNavigationView.setSelectedItemId(R.id.game);
 
         //Construction des boutons
         btnAbandon = findViewById(R.id.btnAbandon);
@@ -140,33 +129,11 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
         }
     }
 
-    @SuppressLint("NonConstantResourceId")
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.home:
-                startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                return true;
-            case R.id.game:
-                return true;
-            case R.id.history:
-                startActivity(new Intent(getApplicationContext(),HistoriqueActivity.class));
-                return true;
-            case R.id.settings:
-                DialogFragment newFragment = new CancelGameDialogFragment();
-                newFragment.show(getSupportFragmentManager(), "game");
-                //then startActivity(new Intent(getApplicationContext(),ConfigurationActivity.class));
-                return true;
-        }
-        return false;
-    }
-
     @Override
     public void onClick(View v) {
         if(v == btnAbandon){
             DialogFragment newFragment = new CancelGameDialogFragment();
             newFragment.show(getSupportFragmentManager(), "game");
-            //then startActivity(new Intent(getApplicationContext(),MainActivity.class));
         } else if (v == btnNouvellePartie){
             DialogFragment newFragment = new CancelGameDialogFragment();
             newFragment.show(getSupportFragmentManager(), "game");
@@ -181,23 +148,14 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
             //afficher le feedback
         }
         else{
-            Toast.makeText(getApplicationContext(), "test!",
-                    Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "test!", Toast.LENGTH_SHORT).show();
         }
-    }
-
-    public void showAbandonDialog(){
-        DialogFragment newFragment = new CancelGameDialogFragment();
-        newFragment.show(getSupportFragmentManager(), "game");
     }
 
     @Override
     public void onDialogPositiveClick(DialogFragment dialog) {
-        scrapGame();//scrap game
-        this.presentateurMastermind.lancerJeu(configuration, user);
-    }
-    private void scrapGame(){
-
+        this.presentateurMastermind.detruireJeu();
+        presentateurMastermind.lancerJeu(configuration, user);
     }
 
     private void afficherChoixCouleurs() {
@@ -211,11 +169,31 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
     }
 
     public void afficherMessage(String s) {
+        Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
     }
 
     public void afficherFeedback(Feedback lastFeedback) {
     }
 
     public void afficherFin(EtatDuJeu etatDuJeu) {
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.home:
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                return true;
+            case R.id.game:
+                return true;
+            case R.id.history:
+                startActivity(new Intent(getApplicationContext(),HistoriqueActivity.class));
+                return true;
+            case R.id.settings:
+                DialogFragment newFragment = new CancelGameDialogFragment();
+                newFragment.show(getSupportFragmentManager(), "game");
+                return true;
+        }
+        return false;
     }
 }

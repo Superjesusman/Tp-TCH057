@@ -1,8 +1,5 @@
 package com.gctcymd.mastermind.modele.entite;
 
-import com.gctcymd.mastermind.modele.entite.Code;
-import com.gctcymd.mastermind.modele.entite.Couleur;
-
 import java.util.Objects;
 
 public class Feedback {

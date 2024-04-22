@@ -8,7 +8,7 @@ public class Tentative {
     public Tentative(int nTentative, Code essaiDeCode, Code codeSecret) {
         this.nbTentative = nTentative;
         this.essaiDeCode = essaiDeCode;
-        this.feedback = new Feedback(essaiDeCode, codeSecret);;
+        this.feedback = new Feedback(essaiDeCode, codeSecret);
     }
 
     public Feedback getFeedback() {

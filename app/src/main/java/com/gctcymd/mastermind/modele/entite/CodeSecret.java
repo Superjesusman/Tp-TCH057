@@ -1,11 +1,8 @@
 package com.gctcymd.mastermind.modele.entite;
 
-import com.gctcymd.mastermind.modele.entite.Code;
-import com.gctcymd.mastermind.modele.entite.Couleur;
-
 public class CodeSecret extends Code {
-    private int id;
-    private int nCouleurs;
+    private final int id;
+    private final int nCouleurs;
 
     public CodeSecret(){
         super(new Couleur[] {});
@@ -22,7 +19,4 @@ public class CodeSecret extends Code {
         return id;
     }
 
-    public int getNCouleurs() {
-        return nCouleurs;
-    }
 }

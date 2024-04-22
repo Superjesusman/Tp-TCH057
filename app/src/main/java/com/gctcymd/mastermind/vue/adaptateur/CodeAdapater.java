@@ -10,7 +10,6 @@ import android.widget.ArrayAdapter;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.gctcymd.mastermind.modele.entite.Code;
 import com.gctcymd.mastermind.modele.entite.Couleur;
 
 public class CodeAdapater extends ArrayAdapter<String> {
