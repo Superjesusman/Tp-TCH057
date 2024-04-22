@@ -51,11 +51,6 @@ public class HttpJsonService {
             try {
                 codeSecrets = Arrays.asList(objectMapper.readValue(jsonData,CodeSecret[].class));
                 codeSecrets.removeIf(c -> c.getLongueur() != longueurCode);
-                for (CodeSecret c:codeSecrets) {
-                    System.out.println("id : " + c.getId()
-                            + "; code : " + Arrays.toString(c.getCode())
-                            + "; nbCouleurs : " + c.getNbCouleurs());
-                }
             } catch (JsonProcessingException e) {
                 throw new RuntimeException(e);
             }
