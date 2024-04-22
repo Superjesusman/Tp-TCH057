@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +23,7 @@ import com.gctcymd.mastermind.modele.entite.Code;
 import com.gctcymd.mastermind.modele.entite.Configuration;
 import com.gctcymd.mastermind.modele.entite.Couleur;
 import com.gctcymd.mastermind.modele.entite.EtatDuJeu;
+import com.gctcymd.mastermind.modele.entite.Feedback;
 import com.gctcymd.mastermind.presentateur.PresentateurMastermind;
 import com.gctcymd.mastermind.vue.fragment.CancelGameDialogFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -28,11 +31,12 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class JeuActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, View.OnClickListener, CancelGameDialogFragment.DialogListener{
     private BottomNavigationView bottomNavigationView;
     private Button btnAbandon, btnNouvellePartie, btnValiderJeu;
-
+    private LinearLayout layoutPartie;
     private GridLayout gridJeu;
     private LinearLayout layoutCouleurs;
     private Button[] boutonsCouleurs;
     private Button[][] boutonsTentative, boutonsFeedback;
+
     private Configuration configuration;
     private Couleur[] couleursCode;
     private int numTentative = 0;
@@ -47,6 +51,7 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jeu);
 
+        layoutPartie = findViewById(R.id.linearLayoutPartie);
         //Construction du menu navigation
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
@@ -64,6 +69,10 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
         btnValiderJeu.setOnClickListener(this);
 
         this.configuration = new Configuration();
+
+        presentateurMastermind = new PresentateurMastermind(this);
+
+        user = "tempUser";
 
         //if intent
         Intent intent = getIntent();
@@ -85,8 +94,6 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
         gridJeu = findViewById(R.id.gridPartie);
         gridJeu.setColumnCount(configuration.getLongueurCode()+2);
         gridJeu.setRowCount(configuration.getMaxTentatives());
-
-
 
         //filling the grid with buttons
         for (int i = 1; i < configuration.getMaxTentatives()+1; i++) {
@@ -121,7 +128,7 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
                     LinearLayout.LayoutParams.WRAP_CONTENT  // height
             );
 
-             // Réduire la largeur du bouton
+            // Réduire la largeur du bouton
             layoutParams.height = 150; // Réduire la hauteur du bouton
             gridFeedback.setLayoutParams(layoutParams);
             for (int j = 0; j < configuration.getLongueurCode(); j++) {
@@ -147,18 +154,8 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
             button.setBackground(drawable);
             layoutCouleurs.addView(button);
         }
-
-
-        /*
-        for(int i = 0; i <  configuration.getMaxTentatives(); i++){
-
-        }
-//        CustomListAdapter adapter=new CustomListAdapter(HomePage.this,allElementDetails);
-//        gridview.setAdapter(adapter);
-
-        //
-         */
-
+        this.presentateurMastermind.lancerJeu(configuration, user);
+        Toast.makeText(this,"Your cheat code, CHEATER: "+ presentateurMastermind.cheatCode(),Toast.LENGTH_SHORT).show();
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -171,7 +168,7 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
             case R.id.game:
                 return true;
             case R.id.history:
-                //startActivity(new Intent(getApplicationContext(),HistoryActivity.class));
+                startActivity(new Intent(getApplicationContext(),HistoriqueActivity.class));
                 return true;
             case R.id.settings:
                 DialogFragment newFragment = new CancelGameDialogFragment();
@@ -193,17 +190,12 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
             newFragment.show(getSupportFragmentManager(), "game");
         } else if (v == btnValiderJeu){
             currentCode = new Code(couleursCode);
-
-            boutonsFeedback[numTentative][1].getBackground().setTint(Color.BLUE);
-            //game
-            //get le guess
-            /*Couleur[] couleursDuJoueur = {};
-
-            //
-            Code tentative = new Code(couleursDuJoueur);
-            this.presentateurMastermind.afficheNouvelleTentative(tentative);
-            //afficher le feedback*/
-            numTentative++;
+            if (currentCode.getLongueur() != configuration.getLongueurCode()){
+                Toast.makeText(this,"Plus de couleurs!! Ton guess est " + currentCode.getLongueur() + "mais le code est " +configuration.getLongueurCode(),Toast.LENGTH_SHORT).show();
+            } else {
+                this.presentateurMastermind.nouvelleTentative(currentCode);
+                numTentative++;
+            }
         }
         else{
             for (int i = 0; i < configuration.getLongueurCode(); i++) {
@@ -229,16 +221,15 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
 
     @Override
     public void onDialogPositiveClick(DialogFragment dialog) {
-        scrapGame();//scrap game
         this.presentateurMastermind.lancerJeu(configuration, user);
     }
 
-
-    private void scrapGame(){
-
+    public void afficherJeu(Couleur[] couleurs){
+        afficherChoixCouleurs(couleurs);
+        afficheGrilleDeJeu();
     }
 
-    private void afficherChoixCouleurs(Couleur[] couleurs) {
+    public void afficherChoixCouleurs(Couleur[] couleurs) {
         for (int i = 0; i < configuration.getNbreCouleurs(); i++) {
             Button button = new Button(this);
             Drawable drawable = getResources().getDrawable(R.drawable.bouton_oval);
@@ -299,14 +290,30 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
         }
     }
 
-    public void afficheJeu() {
-        afficheGrilleDeJeu();
-    }
-
     public void afficherMessage(String s) {
+        Toast.makeText(this,s,Toast.LENGTH_SHORT).show();
     }
 
     public void afficherFin(EtatDuJeu s) {
+        TextView txt = new TextView(this);
+        gridJeu.setVisibility(View.INVISIBLE);
+        txt.setTextSize(40f);
+        txt.setGravity(Gravity.CENTER_HORIZONTAL);
+        txt.setBackgroundColor(Color.GRAY);
+        if(s == EtatDuJeu.DEFAITE){
+            txt.setText("Vous avez perdu!");
+        } else if (s == EtatDuJeu.VICTOIRE) {
+            txt.setText("Vous avez gagné!");
+        }
+        layoutPartie.addView(txt);
+    }
 
+    public void afficherFeedback(Feedback lastFeedback) {
+            for (int j = 0; j < lastFeedback.getIndicateurExact(); j++) {
+                boutonsFeedback[numTentative][j].getBackground().setTint(Color.BLACK);
+            }
+            for (int j = lastFeedback.getIndicateurExact()-1; j < lastFeedback.getIndicateurExact()+lastFeedback.getIndicateurApproximatif() ; j++) {
+                boutonsFeedback[numTentative][j].getBackground().setTint(Color.WHITE);
+            }
     }
 }

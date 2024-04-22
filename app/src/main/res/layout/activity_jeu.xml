@@ -78,27 +78,45 @@
         app:layout_constraintBottom_toTopOf="@+id/linearLayoutPartie"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:baselineAligned="false">
 
-        <Button
-            android:id="@+id/btnAbandon"
-            android:layout_width="146dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center_horizontal"
-            android:backgroundTint="#E14242"
-            android:text="@string/abandon"
-            android:textColor="#000000"
-            android:textSize="20sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btnNouvellePartie"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_gravity="center_horizontal"
-            android:backgroundTint="#7680D2"
-            android:text="@string/nouvelle_partie"
-            android:textColor="#000000"
-            android:textSize="14sp" />
+            <Button
+                android:id="@+id/btnAbandon"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="146dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center_horizontal"
+                android:backgroundTint="#E14242"
+                android:text="@string/abandon"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btnNouvellePartie"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_gravity="center_horizontal"
+                android:backgroundTint="#7680D2"
+                android:text="@string/nouvelle_partie"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+        </LinearLayout>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

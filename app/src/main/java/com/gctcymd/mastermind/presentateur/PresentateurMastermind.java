@@ -3,6 +3,7 @@ package com.gctcymd.mastermind.presentateur;
 import static java.util.Arrays.copyOfRange;
 
 import android.app.Activity;
+import android.util.Log;
 
 import com.gctcymd.mastermind.modele.Mastermind;
 import com.gctcymd.mastermind.modele.ModelManager;
@@ -37,9 +38,14 @@ public class PresentateurMastermind {
                     game.setConfiguration(configuration);
                     game.setUser(user);
                     CodeSecret codeSecret = h.getRandomCodeSecret(configuration);
+                    if (codeSecret == null){
+                        Log.d("CodeSecret Issue", "Empty code secret");
+                    }
                     game.setCodeSecret(codeSecret);
                     Couleur[] couleursDispos = copyOfRange(h.getCouleursDisponibles(), 0, configuration.getNbreCouleurs());
-                    activite.runOnUiThread(() -> ((JeuActivity) activite).afficheJeu(couleursDispos));
+                    activite.runOnUiThread(() -> (
+                            (JeuActivity) activite).afficherJeu(couleursDispos)
+                    );
                 } catch (JSONException e) {
                     activite.runOnUiThread(() -> ((JeuActivity) activite).afficherMessage("Problème dans le JSON des codes secrets"));
                 } catch (IOException e) {
@@ -78,5 +84,9 @@ public class PresentateurMastermind {
                 }
             } .start();
         }
+    }
+
+    public String cheatCode(){
+        return game.getCodeSecret().toString();
     }
 }
