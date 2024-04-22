@@ -36,6 +36,7 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
     private LinearLayout layoutCouleurs;
     private Button[] boutonsCouleurs;
     private Button[][] boutonsTentative, boutonsFeedback;
+
     private Configuration configuration;
     private Couleur[] couleursCode;
     private int numTentative = 0;
@@ -151,18 +152,6 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
             button.setBackground(drawable);
             layoutCouleurs.addView(button);
         }
-
-
-        /*
-        for(int i = 0; i <  configuration.getMaxTentatives(); i++){
-
-        }
-//        CustomListAdapter adapter=new CustomListAdapter(HomePage.this,allElementDetails);
-//        gridview.setAdapter(adapter);
-
-        //
-         */
-
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -175,7 +164,7 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
             case R.id.game:
                 return true;
             case R.id.history:
-                //startActivity(new Intent(getApplicationContext(),HistoryActivity.class));
+                startActivity(new Intent(getApplicationContext(),HistoriqueActivity.class));
                 return true;
             case R.id.settings:
                 DialogFragment newFragment = new CancelGameDialogFragment();
@@ -197,16 +186,7 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
             newFragment.show(getSupportFragmentManager(), "game");
         } else if (v == btnValiderJeu){
             currentCode = new Code(couleursCode);
-
-
-            //game
-            //get le guess
-            /*Couleur[] couleursDuJoueur = {};
-
-            //
-            Code tentative = new Code(couleursDuJoueur);
-            this.presentateurMastermind.afficheNouvelleTentative(tentative);
-            //afficher le feedback*/
+            this.presentateurMastermind.nouvelleTentative(currentCode);
             numTentative++;
         }
         else{
@@ -234,6 +214,11 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
     @Override
     public void onDialogPositiveClick(DialogFragment dialog) {
         this.presentateurMastermind.lancerJeu(configuration, user);
+    }
+
+    public void afficherJeu(Couleur[] couleurs){
+        afficherChoixCouleurs(couleurs);
+        afficheGrilleDeJeu();
     }
 
     public void afficherChoixCouleurs(Couleur[] couleurs) {
