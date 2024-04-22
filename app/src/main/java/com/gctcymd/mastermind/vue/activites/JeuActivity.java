@@ -189,7 +189,7 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
         } else if (v == btnValiderJeu){
             currentCode = new Code(couleursCode);
             if (currentCode.getLongueur() != configuration.getLongueurCode()){
-                Toast.makeText(this,"Plus de couleurs!!",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"Plus de couleurs!! Ton guess est " + currentCode.getLongueur() + "mais le code est " +configuration.getLongueurCode(),Toast.LENGTH_SHORT).show();
             } else {
                 this.presentateurMastermind.nouvelleTentative(currentCode);
                 numTentative++;
