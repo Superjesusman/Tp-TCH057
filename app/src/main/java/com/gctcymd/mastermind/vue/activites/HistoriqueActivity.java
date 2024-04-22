@@ -30,7 +30,7 @@ public class HistoriqueActivity extends AppCompatActivity {
         List<HSession> listeDeSessions = new ArrayList<HSession>();
 
         Couleur[] test = {new Couleur(Color.RED), new Couleur(Color.BLUE), new Couleur(Color.GREEN), new Couleur(Color.LTGRAY)};
-        Code cS = new Code(test);
+        int[] cS = {Color.RED, Color.BLUE};
 
         listeDeSessions.add(new HSession("test@test.ca", "succes", 4, 4, cS));
         listeDeSessions.add(new HSession("test@test.ca", "succes", 4, 7, cS));
