@@ -39,7 +39,7 @@ public class PresentateurMastermind {
                     CodeSecret codeSecret = h.getRandomCodeSecret(configuration);
                     game.setCodeSecret(codeSecret);
                     Couleur[] couleursDispos = copyOfRange(h.getCouleursDisponibles(), 0, configuration.getNbreCouleurs());
-                    activite.runOnUiThread(() -> ((JeuActivity) activite).afficheJeu(couleursDispos));
+                    activite.runOnUiThread(() -> ((JeuActivity) activite).afficherChoixCouleurs(couleursDispos));
                 } catch (JSONException e) {
                     activite.runOnUiThread(() -> ((JeuActivity) activite).afficherMessage("Problème dans le JSON des codes secrets"));
                 } catch (IOException e) {

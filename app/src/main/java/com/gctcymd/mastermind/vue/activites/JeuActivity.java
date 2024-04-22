@@ -21,6 +21,7 @@ import com.gctcymd.mastermind.modele.entite.Code;
 import com.gctcymd.mastermind.modele.entite.Configuration;
 import com.gctcymd.mastermind.modele.entite.Couleur;
 import com.gctcymd.mastermind.modele.entite.EtatDuJeu;
+import com.gctcymd.mastermind.modele.entite.Feedback;
 import com.gctcymd.mastermind.presentateur.PresentateurMastermind;
 import com.gctcymd.mastermind.vue.fragment.CancelGameDialogFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -233,12 +234,7 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
         this.presentateurMastermind.lancerJeu(configuration, user);
     }
 
-
-    private void scrapGame(){
-
-    }
-
-    private void afficherChoixCouleurs(Couleur[] couleurs) {
+    public void afficherChoixCouleurs(Couleur[] couleurs) {
         for (int i = 0; i < configuration.getNbreCouleurs(); i++) {
             Button button = new Button(this);
             Drawable drawable = getResources().getDrawable(R.drawable.bouton_oval);
@@ -298,15 +294,14 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
             gridJeu.addView(gridFeedback);
         }
     }
-
-    public void afficheJeu() {
-        afficheGrilleDeJeu();
-    }
-
+    
     public void afficherMessage(String s) {
     }
 
     public void afficherFin(EtatDuJeu s) {
 
+    }
+
+    public void afficherFeedback(Feedback lastFeedback) {
     }
 }
