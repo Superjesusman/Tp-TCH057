@@ -33,6 +33,7 @@ public class HttpJsonService {
         if(nbCouleur != 0) path+="nbCouleurs="+nbCouleur;
         System.out.println(URL_POINT_ENTREE + path);
         Request request = new Request.Builder().url(URL_POINT_ENTREE + path).build();
+        Log.d("Path:", URL_POINT_ENTREE + path);
         String jsonData = "";
         try {
             Response response = okHttpClient.newCall(request).execute();
