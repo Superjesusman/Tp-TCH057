@@ -234,7 +234,7 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
             Button button = new Button(this);
             Drawable drawable = getResources().getDrawable(R.drawable.bouton_oval);
             button.setBackground(drawable);
-            tintColors[i] = couleurs[i].getCodeHex();
+            tintColors[i] = couleurs[i].toInt();
 
             button.setOnClickListener(this);
             boutonsCouleurs[i] = button;

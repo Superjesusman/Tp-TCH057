@@ -2,21 +2,24 @@ package com.gctcymd.mastermind.modele.entite;
 
 public class CodeSecret extends Code {
     private final int id;
-    private final int nCouleurs;
+    private final int nbCouleurs;
 
     public CodeSecret(){
-        super(new Couleur[] {});
+        super(new String[] {});
         this.id = -1;
-        this.nCouleurs = 0;
+        this.nbCouleurs = 0;
     }
 
-    public CodeSecret(int id, int nCouleurs, Couleur[] code) {
+    public CodeSecret(int id, String[] code, int nCouleurs) {
         super(code);
         this.id = id;
-        this.nCouleurs = nCouleurs;
+        this.nbCouleurs = nCouleurs;
     }
     public int getId() {
         return id;
     }
 
+    public int getNbCouleurs() {
+        return nbCouleurs;
+    }
 }

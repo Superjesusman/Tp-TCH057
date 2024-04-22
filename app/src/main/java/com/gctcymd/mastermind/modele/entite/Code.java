@@ -6,9 +6,19 @@ import java.util.Arrays;
 public class Code {
     protected Couleur[] code;
 
-    public Code(Couleur[] code) {
+    public Code(Couleur[] code){
         this.code = code;
     }
+
+    public Code(String[] str) {
+        code = new Couleur[str.length];
+        int i = 0;
+        for(String s: str){
+            code[i] = new Couleur(s);
+            i++;
+        }
+    }
+
 
     public int getLongueur(){
         return code.length;
