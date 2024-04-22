@@ -5,15 +5,15 @@ import com.gctcymd.mastermind.modele.Mastermind;
 public class HSession {
     private String courriel, resultat;
     private int nbCouleurs, nbTentatives;
-    private CodeSecret codeSecret;
+    private int[] codeSecret;
 
-    public HSession(Mastermind mastermind) {
-        this.courriel = mastermind.getUser();
-        this.resultat = mastermind.getEtatDuJeu().toString();
-        this.nbCouleurs = mastermind.getConfiguration().getNbreCouleurs();
-        this.nbTentatives = mastermind.getNbreTentatives();
-        this.codeSecret = mastermind.getCodeSecret();
-        //System.arraycopy(codeS, 0, this.codeSecret, 0, codeS.length);
+    public HSession(String courriel, String resultat, int nbCouleurs, int nbTentatives, int[] codeS) {
+        this.courriel = courriel;
+        this.resultat = resultat;
+        this.nbCouleurs = nbCouleurs;
+        this.nbTentatives = nbTentatives;
+        this.codeSecret = new int[codeS.length];
+        System.arraycopy(codeS, 0, this.codeSecret, 0, codeS.length);
     }
     public String getCourriel(){
         return this.courriel;
@@ -27,7 +27,7 @@ public class HSession {
     public int getNbTentatives(){
         return this.nbTentatives;
     }
-    public CodeSecret getCodeSecret(){
+    public int[] getCodeSecret(){
         return this.codeSecret;
     }
 }

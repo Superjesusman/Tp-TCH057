@@ -72,7 +72,7 @@ public class HistoriqueAdapter extends ArrayAdapter<HSession> {
             hColors.add((Button) view.findViewById(R.id.historiqueColor5));
             hColors.add((Button) view.findViewById(R.id.historiqueColor6));
 
-            hCourriel.setText(mastermind.get());
+            hCourriel.setText(hSession.getCourriel());
             hNbCouleurs.setText(String.valueOf(hSession.getNbCouleurs()));
             hResultat.setText(hSession.getResultat());
             hNbTentatives.setText(String.valueOf(hSession.getNbTentatives()));

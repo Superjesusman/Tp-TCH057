@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.gctcymd.mastermind.R;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     private String currentEmail = "";
     private boolean isConnected = false;

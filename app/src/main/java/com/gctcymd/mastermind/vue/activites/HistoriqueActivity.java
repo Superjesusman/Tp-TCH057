@@ -9,18 +9,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.gctcymd.mastermind.R;
 import com.gctcymd.mastermind.modele.entite.Code;
+import com.gctcymd.mastermind.modele.entite.CodeSecret;
 import com.gctcymd.mastermind.modele.entite.Couleur;
 import com.gctcymd.mastermind.modele.entite.HSession;
 import com.gctcymd.mastermind.vue.adaptateur.HistoriqueAdapter;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HistoriqueActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
+public class HistoriqueActivity extends AppCompatActivity {
 
     private ListView lv;
-    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +27,7 @@ public class HistoriqueActivity extends AppCompatActivity implements BottomNavig
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_historique2);
         lv = findViewById(R.id.lvHistorique);
-        List<HSession> listeDeSessions = new ArrayList<HSession>(); //doesn't MASTERMIND IS A SINGLETON!!!!! SHOULD BE FROM LOCAL BDB
+        List<HSession> listeDeSessions = new ArrayList<HSession>();
 
         Couleur[] test = {new Couleur(Color.RED), new Couleur(Color.BLUE), new Couleur(Color.GREEN), new Couleur(Color.LTGRAY)};
         Code cS = new Code(test);
