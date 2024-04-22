@@ -31,11 +31,16 @@ public class HttpJsonService {
         int longueurCode = config.getLongueurCode();
         int nbCouleur = config.getNbreCouleurs();
         if(nbCouleur != 0) path+="nbCouleurs="+nbCouleur;
+        System.out.println(URL_POINT_ENTREE + path);
         Request request = new Request.Builder().url(URL_POINT_ENTREE + path).build();
-
-        Response response = okHttpClient.newCall(request).execute();
-        ResponseBody responseBody = response.body();
-        String jsonData = responseBody.string();
+        String jsonData = "";
+        try {
+            Response response = okHttpClient.newCall(request).execute();
+            ResponseBody responseBody = response.body();
+            jsonData = responseBody.string();
+        } catch (Exception e){
+            System.out.println(e);
+        }
 
         Log.d("HttpJsonService:getCodeSecrets", jsonData);
 
