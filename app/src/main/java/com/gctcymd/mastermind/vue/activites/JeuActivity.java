@@ -70,6 +70,8 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
 
         this.configuration = new Configuration();
 
+        presentateurMastermind = new PresentateurMastermind(this);
+
         //if intent
         Intent intent = getIntent();
         configuration.setLongueurCode(intent.getIntExtra("LONGUEUR_CODE", 4));
@@ -186,7 +188,11 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
             newFragment.show(getSupportFragmentManager(), "game");
         } else if (v == btnValiderJeu){
             currentCode = new Code(couleursCode);
-            this.presentateurMastermind.nouvelleTentative(currentCode);
+            if (currentCode == null){
+
+            } else {
+                this.presentateurMastermind.nouvelleTentative(currentCode);
+            }
             numTentative++;
         }
         else{
