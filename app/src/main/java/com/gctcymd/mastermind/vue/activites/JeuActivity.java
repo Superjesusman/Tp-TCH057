@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -302,11 +303,16 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
 
     public void afficherFin(EtatDuJeu s) {
         TextView txt = new TextView(this);
+        gridJeu.setVisibility(View.INVISIBLE);
+        txt.setTextSize(40f);
+        txt.setGravity(Gravity.CENTER_HORIZONTAL);
+        txt.setBackgroundColor(Color.GRAY);
         if(s == EtatDuJeu.DEFAITE){
-            gridJeu.setVisibility(View.INVISIBLE);
             txt.setText("Vous avez perdu!");
-            layoutPartie.addView(txt);
+        } else if (s == EtatDuJeu.VICTOIRE) {
+            txt.setText("Vous avez gagné!");
         }
+        layoutPartie.addView(txt);
     }
 
     public void afficherFeedback(Feedback lastFeedback) {
