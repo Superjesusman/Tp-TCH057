@@ -1,11 +1,15 @@
 package com.gctcymd.mastermind.vue.activites;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.ListView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
 import com.gctcymd.mastermind.R;
 import com.gctcymd.mastermind.modele.entite.Code;
@@ -40,5 +44,22 @@ public class HistoriqueActivity extends AppCompatActivity {
 
         lv.setAdapter(adapter);
 
+    }
+
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.home:
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                return true;
+            case R.id.game:
+                startActivity(new Intent(getApplicationContext(),JeuActivity.class));
+                return true;
+            case R.id.history:
+                return true;
+            case R.id.settings:
+                startActivity(new Intent(getApplicationContext(),ConfigurationActivity.class));
+                return true;
+        }
+        return false;
     }
 }

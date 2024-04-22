@@ -2,12 +2,14 @@ package com.gctcymd.mastermind.vue.activites;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.gctcymd.mastermind.R;
@@ -56,6 +58,23 @@ public class ConfigurationActivity extends AppCompatActivity implements BottomNa
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
         spinner.setSelection(defaultPosition);
+    }
+
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.home:
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                return true;
+            case R.id.game:
+                startActivity(new Intent(getApplicationContext(),JeuActivity.class));
+                return true;
+            case R.id.history:
+                startActivity(new Intent(getApplicationContext(),HistoriqueActivity.class));
+                return true;
+            case R.id.settings:
+                return true;
+        }
+        return false;
     }
 
     @Override

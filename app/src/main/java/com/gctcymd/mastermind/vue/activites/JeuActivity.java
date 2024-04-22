@@ -2,23 +2,19 @@ package com.gctcymd.mastermind.vue.activites;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-//import android.widget.GridLayout;
-import androidx.gridlayout.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
+import androidx.gridlayout.widget.GridLayout;
 
 import com.gctcymd.mastermind.R;
 import com.gctcymd.mastermind.modele.entite.Code;
@@ -26,12 +22,8 @@ import com.gctcymd.mastermind.modele.entite.Configuration;
 import com.gctcymd.mastermind.modele.entite.Couleur;
 import com.gctcymd.mastermind.modele.entite.EtatDuJeu;
 import com.gctcymd.mastermind.presentateur.PresentateurMastermind;
-import com.gctcymd.mastermind.vue.adaptateur.GameAdapter;
 import com.gctcymd.mastermind.vue.fragment.CancelGameDialogFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class JeuActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, View.OnClickListener, CancelGameDialogFragment.DialogListener{
     private BottomNavigationView bottomNavigationView;
@@ -49,7 +41,6 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
     private Code currentCode;
     private String user;
     private PresentateurMastermind presentateurMastermind;
-    private GameAdapter adaptateur;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
