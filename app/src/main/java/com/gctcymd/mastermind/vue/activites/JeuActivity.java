@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,7 +30,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class JeuActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, View.OnClickListener, CancelGameDialogFragment.DialogListener{
     private BottomNavigationView bottomNavigationView;
     private Button btnAbandon, btnNouvellePartie, btnValiderJeu;
-
+    private LinearLayout layoutPartie;
     private GridLayout gridJeu;
     private LinearLayout layoutCouleurs;
     private Button[] boutonsCouleurs;
@@ -48,6 +49,7 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jeu);
 
+        layoutPartie = findViewById(R.id.linearLayoutPartie);
         //Construction du menu navigation
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
@@ -122,7 +124,7 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
                     LinearLayout.LayoutParams.WRAP_CONTENT  // height
             );
 
-             // Réduire la largeur du bouton
+            // Réduire la largeur du bouton
             layoutParams.height = 150; // Réduire la hauteur du bouton
             gridFeedback.setLayoutParams(layoutParams);
             for (int j = 0; j < configuration.getLongueurCode(); j++) {
@@ -195,7 +197,7 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
         } else if (v == btnValiderJeu){
             currentCode = new Code(couleursCode);
 
-            boutonsFeedback[numTentative][1].getBackground().setTint(Color.BLUE);
+
             //game
             //get le guess
             /*Couleur[] couleursDuJoueur = {};
@@ -230,7 +232,6 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
 
     @Override
     public void onDialogPositiveClick(DialogFragment dialog) {
-        scrapGame();//scrap game
         this.presentateurMastermind.lancerJeu(configuration, user);
     }
 
@@ -294,14 +295,26 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
             gridJeu.addView(gridFeedback);
         }
     }
-    
+
     public void afficherMessage(String s) {
+        Toast.makeText(this,s,Toast.LENGTH_SHORT).show();
     }
 
     public void afficherFin(EtatDuJeu s) {
-
+        TextView txt = new TextView(this);
+        if(s == EtatDuJeu.DEFAITE){
+            gridJeu.setVisibility(View.INVISIBLE);
+            txt.setText("Vous avez perdu!");
+            layoutPartie.addView(txt);
+        }
     }
 
     public void afficherFeedback(Feedback lastFeedback) {
+            for (int j = 0; j < lastFeedback.getIndicateurExact(); j++) {
+                boutonsFeedback[numTentative][j].getBackground().setTint(Color.BLACK);
+            }
+            for (int j = lastFeedback.getIndicateurExact()-1; j < lastFeedback.getIndicateurExact()+lastFeedback.getIndicateurApproximatif() ; j++) {
+                boutonsFeedback[numTentative][j].getBackground().setTint(Color.WHITE);
+            }
     }
 }
