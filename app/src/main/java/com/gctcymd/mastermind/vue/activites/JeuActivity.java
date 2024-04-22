@@ -72,6 +72,8 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
 
         presentateurMastermind = new PresentateurMastermind(this);
 
+        user = "tempUser";
+
         //if intent
         Intent intent = getIntent();
         configuration.setLongueurCode(intent.getIntExtra("LONGUEUR_CODE", 4));
@@ -92,8 +94,6 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
         gridJeu = findViewById(R.id.gridPartie);
         gridJeu.setColumnCount(configuration.getLongueurCode()+2);
         gridJeu.setRowCount(configuration.getMaxTentatives());
-
-
 
         //filling the grid with buttons
         for (int i = 1; i < configuration.getMaxTentatives()+1; i++) {
@@ -188,12 +188,12 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
             newFragment.show(getSupportFragmentManager(), "game");
         } else if (v == btnValiderJeu){
             currentCode = new Code(couleursCode);
-            if (currentCode == null){
-
+            if (currentCode.getLongueur() != configuration.getLongueurCode()){
+                Toast.makeText(this,"Plus de couleurs!!",Toast.LENGTH_SHORT).show();
             } else {
                 this.presentateurMastermind.nouvelleTentative(currentCode);
+                numTentative++;
             }
-            numTentative++;
         }
         else{
             for (int i = 0; i < configuration.getLongueurCode(); i++) {
