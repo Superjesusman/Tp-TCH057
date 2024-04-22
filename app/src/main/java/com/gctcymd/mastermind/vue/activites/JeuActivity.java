@@ -154,6 +154,8 @@ public class JeuActivity extends AppCompatActivity implements BottomNavigationVi
             button.setBackground(drawable);
             layoutCouleurs.addView(button);
         }
+        Toast.makeText(this,"Your cheat code, CHEATER: "+ presentateurMastermind.cheatCode(),Toast.LENGTH_SHORT).show();
+
     }
 
     @SuppressLint("NonConstantResourceId")

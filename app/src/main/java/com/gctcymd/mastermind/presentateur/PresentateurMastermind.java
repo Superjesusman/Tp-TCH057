@@ -81,4 +81,8 @@ public class PresentateurMastermind {
             } .start();
         }
     }
+
+    public String cheatCode(){
+        return game.getCodeSecret().toString();
+    }
 }
