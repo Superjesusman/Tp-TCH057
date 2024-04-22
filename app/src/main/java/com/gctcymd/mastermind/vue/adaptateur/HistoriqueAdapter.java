@@ -58,12 +58,6 @@ public class HistoriqueAdapter extends ArrayAdapter<HSession> {
             final TextView hNbCouleurs = (TextView) view.findViewById(R.id.hNbCouleurs);
             final TextView hResultat = (TextView) view.findViewById(R.id.hResultat);
             final TextView hNbTentatives = (TextView) view.findViewById(R.id.hNbTentatives);
-            //final ImageView hColor1 = (ImageView) view.findViewById(R.id.historiqueColor1);
-            //final ImageView hColor2 = (ImageView) view.findViewById(R.id.historiqueColor2);
-            //final ImageView hColor3 = (ImageView) view.findViewById(R.id.historiqueColor3);
-            //final ImageView hColor4 = (ImageView) view.findViewById(R.id.historiqueColor4);
-            //final ImageView hColor5 = (ImageView) view.findViewById(R.id.historiqueColor5);
-            //final ImageView hColor6 = (ImageView) view.findViewById(R.id.historiqueColor6);
             ArrayList<Button> hColors = new ArrayList<>();
             hColors.add((Button) view.findViewById(R.id.historiqueColor1));
             hColors.add((Button) view.findViewById(R.id.historiqueColor2));
