@@ -75,10 +75,17 @@ public class PresentateurMastermind {
             new Thread() {
                 @Override
                 public void run() {
+                    int[] intCode = new int[game.getCodeSecret().getCode().length];
+                    int i = 0;
+                    for(Couleur c: game.getCodeSecret().getCode()){
+                        intCode[i]=c.toInt();
+                        i++;
+                    }
                     try {
-                        h.pushNewStats();
-                        //and locally as well
-                    } catch (IOException e) {
+                        h.pushNewStats(game.getCodeSecret().getId(), game.getUser(), game.getEtatDuJeu().toString(), game.getConfiguration().getNbreCouleurs(), game.getNbreTentatives(), intCode, activite);
+                    } catch (JSONException e) {
+                        activite.runOnUiThread(() -> ((JeuActivity) activite).afficherMessage("Problème dans le JSON des codes secrets"));
+                    }catch (IOException e) {
                         activite.runOnUiThread(() -> ((JeuActivity) activite).afficherMessage("Problème d'accès à l'API"));
                     }
                 }

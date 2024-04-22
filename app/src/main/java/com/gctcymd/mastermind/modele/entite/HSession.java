@@ -1,13 +1,13 @@
 package com.gctcymd.mastermind.modele.entite;
 
-import com.gctcymd.mastermind.modele.Mastermind;
-
 public class HSession {
+    int id;
     private String courriel, resultat;
     private int nbCouleurs, nbTentatives;
     private int[] codeSecret;
 
-    public HSession(String courriel, String resultat, int nbCouleurs, int nbTentatives, int[] codeS) {
+    public HSession(int id, String courriel, String resultat, int nbCouleurs, int nbTentatives, int[] codeS) {
+        this.id = id;
         this.courriel = courriel;
         this.resultat = resultat;
         this.nbCouleurs = nbCouleurs;

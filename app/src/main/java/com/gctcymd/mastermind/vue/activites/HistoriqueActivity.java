@@ -1,10 +1,8 @@
 package com.gctcymd.mastermind.vue.activites;
 
-import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.BaseColumns;
 import android.view.MenuItem;
@@ -14,14 +12,10 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
 
 import com.gctcymd.mastermind.R;
 import com.gctcymd.mastermind.modele.MyDBContract;
 import com.gctcymd.mastermind.modele.MyDBHelper;
-import com.gctcymd.mastermind.modele.entite.Code;
-import com.gctcymd.mastermind.modele.entite.CodeSecret;
-import com.gctcymd.mastermind.modele.entite.Couleur;
 import com.gctcymd.mastermind.modele.entite.HSession;
 import com.gctcymd.mastermind.vue.adaptateur.HistoriqueAdapter;
 
@@ -40,7 +34,7 @@ public class HistoriqueActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_historique2);
+        setContentView(R.layout.activity_historique);
 
         List<HSession> listeDeSessions = new ArrayList<HSession>();
 
